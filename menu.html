@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Меню — SushiЮ, доставка суші у Ковелі</title>
+<meta name="description" content="Меню SushiЮ: сети, філадельфії, каліфорнії, запечені роли, хенд-роли, суші та додатки. Доставка по Ковелю щодня 11:00–21:00.">
+<meta name="theme-color" content="#0F1011">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.6 1.6 0 0 1-1.6 1.6H5.6A1.6 1.6 0 0 1 4 19v-8.5Z"/><path d="M9.6 20.6v-5.2a2.4 2.4 0 0 1 4.8 0v5.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.6"/><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.6"/><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.6"/><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.6 4-2 1.4a12 12 0 0 0 6 6l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-scooter" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="2.6"/><circle cx="18.5" cy="17.5" r="2.6"/><path d="M8 17.5h8M15.5 17.5 13 6.5h-2.6M16 6.5h3l1.4 8.4"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.6 8h12.8l1 12H4.6l1-12Z"/><path d="M9 8V6.4a3 3 0 0 1 6 0V8"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.4"/><path d="M3 10h18M6.5 14.6h3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.6 2.5 5.3 5.6.8-4.1 4 1 5.7-5-2.7-5 2.7 1-5.7-4.1-4 5.6-.8L12 3.6Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><path d="M14.4 3.2v10.9a3.6 3.6 0 1 1-3.2-3.6"/><path d="M14.4 3.2a5 5 0 0 0 4.9 4.3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13.5h17M12 9v11.5"/><path d="M12 9S9.6 4.5 7.4 5.6 9.6 9 12 9Zm0 0s2.4-4.5 4.6-3.4S14.4 9 12 9Z"/></symbol>
+</svg>
+
+<div id="prog"></div>
+
+<header class="hdr solid" id="hdr">
+  <div class="wrap">
+    <a class="back" href="index.html" aria-label="Назад"><svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="index.html" class="logo" aria-label="SushiЮ">
+      <span><span class="script">Sushi</span><small>Ковель</small></span>
+      <svg viewBox="0 0 44 40" aria-hidden="true">
+        <path d="M8 4.5 12 35" stroke="#F2EEE8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2.5 30 22 8.5" stroke="#D9C7AE" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="31" cy="22" r="10" fill="#E2523A"/>
+        <path d="M31 15.4a6.6 6.6 0 1 0 6.6 6.6 4.3 4.3 0 1 1-4.3-4.3" fill="#F7F2EA"/>
+      </svg>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Головна</a>
+      <a href="menu.html" class="act">Меню</a>
+      <a href="index.html#delivery">Доставка</a>
+      <a href="index.html#insta">Instagram</a>
+      <a href="index.html#contacts">Контакти</a>
+    </nav>
+    <a class="hdr-tel" href="tel:+380671213366"><svg class="ico"><use href="#i-phone"/></svg><span>067 121 33 66</span></a>
+  </div>
+</header>
+
+<main id="top" style="padding-top:var(--hdr)">
+
+<section style="padding:clamp(26px,4vw,44px) 0 0">
+  <div class="wrap">
+    <p class="eyebrow">Ковель · доставка щодня 11:00 – 21:00</p>
+    <h1 class="sec-h" style="margin-top:10px">Меню</h1>
+  </div>
+</section>
+
+<div class="menu-bar">
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <div class="tools">
+      <div class="search" id="searchBox">
+        <svg class="ico"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Пошук: філадельфія, креветка, сет…" autocomplete="off">
+        <button class="clr" id="qClear" type="button" aria-label="Очистити">&#10005;</button>
+      </div>
+      <button class="sortbtn" id="sortBtn"><svg class="ico"><use href="#i-sort"/></svg><span id="sortLbl">Популярні</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap"><div id="grid"></div></div>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="info rv">
+      <div class="icard">
+        <svg class="ico"><use href="#i-scooter"/></svg>
+        <h3>Доставка</h3>
+        <ul>
+          <li><b>Безкоштовно</b> по місту від <b>1 000 ₴</b></li>
+          <li>Замовлення до 1 000 ₴ — доставка <b>100 ₴</b></li>
+          <li>Замовлення до 500 ₴ — доставка <b>130 ₴</b></li>
+          <li>Возимо щодня з 11:00 до 21:00, лише до підʼїзду</li>
+        </ul>
+      </div>
+      <div class="icard">
+        <svg class="ico"><use href="#i-gift"/></svg>
+        <h3>Іменинникам</h3>
+        <ul>
+          <li>Знижка <b>−10%</b> на все меню</li>
+          <li>Діє за день до дня народження, у сам день і наступного дня</li>
+          <li>Просто скажіть про це менеджеру при замовленні</li>
+        </ul>
+      </div>
+      <div class="icard">
+        <svg class="ico"><use href="#i-phone"/></svg>
+        <h3>Замовити</h3>
+        <ul>
+          <li><a href="tel:+380671213366">067 121 33 66</a></li>
+          <li><a href="tel:+380661213366">066 121 33 66</a></li>
+          <li><a href="https://ig.me/m/sushi.julia_kovel" target="_blank" rel="noopener">Написати в Direct</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr" id="contacts">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:15px">
+          <span><span class="script">Sushi</span><small>Ковель</small></span>
+          <svg viewBox="0 0 44 40" aria-hidden="true">
+            <path d="M8 4.5 12 35" stroke="#F2EEE8" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2.5 30 22 8.5" stroke="#D9C7AE" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="31" cy="22" r="10" fill="#E2523A"/>
+            <path d="M31 15.4a6.6 6.6 0 1 0 6.6 6.6 4.3 4.3 0 1 1-4.3-4.3" fill="#F7F2EA"/>
+          </svg>
+        </a>
+        <p>Найсмачніша доставка твого міста.<br>Роли для щасливих людей.</p>
+        <div class="socs">
+          <a href="https://www.instagram.com/sushi.julia_kovel/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+          <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTM1MzE4NzcyNjgzNDQ1" target="_blank" rel="noopener" aria-label="TikTok"><svg class="ico"><use href="#i-tt"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Телефони</h4>
+        <a class="tel-big" href="tel:+380671213366">067 121 33 66</a>
+        <a class="tel-big" href="tel:+380661213366">066 121 33 66</a>
+      </div>
+      <div>
+        <h4>Адреса</h4>
+        <p>м. Ковель,<br>вул. Незалежності, 86</p>
+        <a href="https://maps.google.com/?q=Ковель,+вулиця+Незалежності,+86" target="_blank" rel="noopener">Показати на мапі</a>
+      </div>
+      <div>
+        <h4>Графік</h4>
+        <p>Щодня<br>11:00 – 21:00</p>
+        <a href="https://ig.me/m/sushi.julia_kovel" target="_blank" rel="noopener">Написати в Direct</a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>© <span id="yr"></span> SushiЮ, Ковель</span>
+      <span>Ціни та склад страв уточнюйте у менеджера</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="bnav" aria-label="Швидка навігація">
+  <a class="bn" href="index.html"><svg class="ico"><use href="#i-home"/></svg>Головна</a>
+  <a class="bn act" href="menu.html"><svg class="ico"><use href="#i-menu"/></svg>Меню</a>
+  <button class="bn bn-cart" id="bCart" aria-label="Кошик">
+    <span class="cnt" id="bCount">0</span>
+    <span class="bubble"><svg class="ico"><use href="#i-bag"/></svg></span>
+    <span class="lbl">Кошик</span>
+  </button>
+  <a class="bn" href="index.html#delivery"><svg class="ico"><use href="#i-scooter"/></svg>Доставка</a>
+  <a class="bn" href="tel:+380671213366"><svg class="ico"><use href="#i-phone"/></svg>Телефон</a>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Кошик">
+  <div class="cart-h">
+    <h3>Кошик</h3>
+    <button class="x" id="cartClose" aria-label="Закрити">&#10005;</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-f">
+    <div class="f-row"><span>Позицій</span><span id="fCount">0</span></div>
+    <div class="f-row"><span>Сума замовлення</span><b id="fSub">0 ₴</b></div>
+    <div class="f-row"><span>Доставка по місту</span><b id="fDeliv">—</b></div>
+    <div class="f-total"><span>До сплати</span><b id="fTotal">0 ₴</b></div>
+    <a class="btn btn-p" id="sendIg" href="https://ig.me/m/sushi.julia_kovel" target="_blank" rel="noopener">Замовити в Direct <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-g" href="tel:+380671213366"><svg class="ico"><use href="#i-phone"/></svg> Замовити дзвінком</a>
+    <p class="hint" id="hint">Склад замовлення скопіюється — просто вставте його в повідомлення.</p>
+  </div>
+</aside>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+const SORTS = [
+  {id:'pop',  n:'Популярні', f:(a,b) => b.pop - a.pop},
+  {id:'asc',  n:'Дешевші',   f:(a,b) => a.p - b.p},
+  {id:'desc', n:'Дорожчі',   f:(a,b) => b.p - a.p}
+];
+const params = new URLSearchParams(location.search);
+let cat  = CATS.some(c => c.id === params.get('c')) ? params.get('c') : 'all';
+let q    = params.get('q') || '';
+let sort = 0;
+
+$('#chips').innerHTML = CATS.map(c =>
+  '<button class="chip' + (c.id === cat ? ' on' : '') + '" data-c="' + c.id + '">' + c.n + '</button>').join('');
+$('#q').value = q;
+$('#searchBox').classList.toggle('has', !!q);
+
+function renderGrid(){
+  const list = MENU.filter(m => (cat === 'all' || m.c === cat) && matches(m, q))
+                   .slice().sort(SORTS[sort].f);
+  if (!list.length){
+    $('#grid').innerHTML = '<div class="empty"><b>Нічого не знайшли</b>' +
+      'Спробуйте іншу назву або зателефонуйте — підкажемо<br>' +
+      '<a href="tel:+380671213366" style="color:var(--accent)">067 121 33 66</a></div>';
+    return;
+  }
+  let html = '';
+  if (cat === 'all' && !q){
+    CATS.filter(c => c.id !== 'all').forEach(c => {
+      const part = list.filter(m => m.c === c.id);
+      if (!part.length) return;
+      html += '<h2 class="cat-title">' + c.n + '</h2><div class="grid">' + part.map(cardHTML).join('') + '</div>';
+    });
+  } else {
+    html = '<div class="grid" style="margin-top:22px">' + list.map(cardHTML).join('') + '</div>';
+  }
+  $('#grid').innerHTML = html;
+  revealScan();
+}
+
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (!chip) return;
+  cat = chip.dataset.c;
+  $$('.chip').forEach(c => c.classList.toggle('on', c === chip));
+  renderGrid(); renderCart();
+});
+$('#sortBtn').addEventListener('click', () => {
+  sort = (sort + 1) % SORTS.length;
+  $('#sortLbl').textContent = SORTS[sort].n;
+  renderGrid(); renderCart();
+});
+$('#q').addEventListener('input', e => {
+  q = e.target.value;
+  $('#searchBox').classList.toggle('has', !!q);
+  renderGrid(); renderCart();
+});
+$('#qClear').addEventListener('click', () => {
+  q = ''; $('#q').value = ''; $('#searchBox').classList.remove('has');
+  renderGrid(); renderCart();
+});
+
+renderGrid();
+initShell();
+</script>
+</body>
+</html>
