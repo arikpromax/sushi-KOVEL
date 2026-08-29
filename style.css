@@ -97,9 +97,11 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 .back{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line-2);border-radius:50%;font-size:18px;flex:none;transition:.22s}
 .back:hover{border-color:var(--accent);color:var(--accent)}
 .back .ico{transform:rotate(180deg)}
-.logo{display:flex;align-items:center;gap:9px;flex:none}
-.logo .script{font-family:'Marck Script',cursive;font-size:32px;line-height:1;color:var(--ink);display:block}
-.logo small{display:block;font:500 8.5px/1 'Manrope';letter-spacing:.34em;color:var(--ink-3);text-transform:uppercase;margin-top:1px}
+.logo{display:flex;align-items:center;flex:none}
+.logo-mark{height:56px;width:auto;flex:none;transition:height .3s ease}
+.hdr.small .logo-mark{height:44px}
+.ftr .logo-mark{height:70px}
+@media (max-width:560px){.logo-mark{height:46px}.hdr.small .logo-mark{height:38px}}
 
 /* ================= hero ================= */
 .hero{position:relative;min-height:min(94svh,800px);display:flex;align-items:flex-end;padding:calc(var(--hdr) + 46px) 0 30px;overflow:hidden}
