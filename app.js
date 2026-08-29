@@ -118,8 +118,7 @@ function cardHTML(m){
     '</div>' +
     '<h3>' + m.n + '</h3>' +
     '<p class="ing">' + (m.ing || '') + '</p>' +
-    '<div class="card-f"><span class="wt">' + (m.wt || '') + '</span>' +
-      '<span class="price"><i>₴</i>' + m.p + '</span></div>' +
+    '<div class="card-f"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
     '<button class="add" data-add="' + m.id + '">Вибрати</button>' +
     '<div class="step"><button data-dec="' + m.id + '" aria-label="Менше">&minus;</button>' +
     '<b data-qty="' + m.id + '">' + qty + '</b>' +
@@ -142,7 +141,7 @@ function renderCart(){
         const m = byId(id);
         return '<div class="ci"><div class="ci-ph">' + (m.img ? '<img src="' + m.img + '" alt="">' : '') + '</div>' +
           '<div class="ci-b"><h4>' + m.n + '</h4>' +
-          '<div class="m">' + (m.wt || '') + ' · ' + m.p + ' ₴</div>' +
+          '<div class="m">' + m.p + ' ₴</div>' +
           '<div class="ci-r"><button data-dec="' + id + '">&minus;</button><b>' + cart[id] + '</b>' +
           '<button data-inc="' + id + '">+</button>' +
           '<span class="ci-price">' + money(m.p * cart[id]) + '</span></div></div></div>';
@@ -196,7 +195,7 @@ function renderCheck(){
     ids.map(id => {
       const m = byId(id);
       return '<div class="check-li"><div class="l"><b>' + m.n + '</b>' +
-        '<span>' + cart[id] + ' × ' + m.p + ' ₴' + (m.wt ? ' · ' + m.wt : '') + '</span></div>' +
+        '<span>' + cart[id] + ' × ' + m.p + ' ₴</span></div>' +
         '<div class="r">' + money(m.p * cart[id]) + '</div></div>';
     }).join('') +
     '<div class="check-sum"><span>Сума</span><b>' + money(s.total) + '</b></div>' +
@@ -231,8 +230,7 @@ function openProd(id){
     '<div class="prod-ph">' + (m.b ? '<span class="badge' + (m.b === 'Хіт' || m.b === 'Топ' ? ' hit' : '') + '">' + m.b + '</span>' : '') + '</div>' +
     '<h2 class="prod-n">' + m.n + '</h2>' +
     '<p class="prod-ing">' + (m.ing || '') + '</p>' +
-    '<div class="prod-meta"><span class="wt">' + (m.wt || '') + '</span>' +
-      '<span class="price"><i>₴</i>' + m.p + '</span></div>' +
+    '<div class="prod-meta"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
     '<h3 class="also-h">Спробуйте також</h3>' +
     '<div class="rail">' + also.map(cardHTML).join('') + '</div>';
 

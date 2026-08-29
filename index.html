@@ -82,7 +82,7 @@
     <p class="lead">Роли для щасливих людей</p>
     <div class="hero-cta">
       <a href="menu.html" class="btn btn-p">Дивитись меню <svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="#delivery" class="btn btn-g"><svg class="ico"><use href="#i-delivery"/></svg> Безкоштовна доставка від 1 000 ₴</a>
+      <a href="#delivery" class="btn btn-g"><svg class="ico"><use href="#i-delivery"/></svg> Безкоштовна доставка від 1 400 ₴</a>
     </div>
     <div class="bnr-grid rv" id="bnrGrid"></div>
   </div>
@@ -108,7 +108,7 @@
 
     <form class="search rv" id="homeSearch" action="menu.html">
       <svg class="ico"><use href="#i-search"/></svg>
-      <input name="q" type="search" placeholder="Пошук: філадельфія, креветка, сет…" autocomplete="off">
+      <input name="q" type="search" placeholder="Пошук: філадельфія, креветка, макі…" autocomplete="off">
       <button class="go" type="submit"><svg class="ico"><use href="#i-search"/></svg><span>Пошук</span></button>
     </form>
 
@@ -310,10 +310,10 @@
 <script>
 /* банери категорій */
 const BNR = [
-  {c:'set',  n:'Сети',        s:'Вигідно для компанії', cls:''},
-  {c:'phil', n:'Філадельфія', s:'Наш хіт',              cls:'is-accent'},
-  {c:'bake', n:'Запечені',    s:'Під сирною шапкою',    cls:''},
-  {c:'hand', n:'Хенд-роли',   s:'Новинка',              cls:'is-sand'}
+  {c:'phil', n:'Філадельфія',  s:'Наш хіт',           cls:'is-accent'},
+  {c:'prem', n:'Преміум роли', s:'Для особливого дня', cls:''},
+  {c:'bake', n:'Запечені',     s:'Під сирною шапкою',  cls:''},
+  {c:'hand', n:'Хенд роли',    s:'Новинка',            cls:'is-sand'}
 ];
 $('#bnrGrid').innerHTML = BNR.map(b =>
   '<a class="bnr ' + b.cls + '" href="menu.html?c=' + b.c + '">' +
