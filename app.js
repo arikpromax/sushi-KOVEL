@@ -147,6 +147,7 @@ function renderCart(){
   const fs = $('#fSub');   if (fs) fs.textContent = money(s.total);
   const fc = $('#fCount'); if (fc) fc.textContent = s.count;
   const ft = $('#fTotal'); if (ft) ft.textContent = money(s.total + (s.count ? d.price : 0));
+  const hc = $('#hdrCount'); if (hc) hc.textContent = s.count;
   const bc = $('#bCount'), bt = $('#bCart');
   if (bc && bt){
     bc.textContent = s.count;
@@ -223,6 +224,17 @@ function initShell(){
 
   const bc = $('#bCount');
   if (bc) bc.addEventListener('animationend', () => bc.classList.remove('bump'));
+
+  const hCart = $('#hdrCart');
+  if (hCart) hCart.addEventListener('click', openCart);
+
+  const hSearch = $('#hdrSearch');
+  if (hSearch) hSearch.addEventListener('click', () => {
+    const inp = $('#q') || document.querySelector('#homeSearch input');
+    if (!inp) { location.href = 'menu.html'; return; }
+    inp.scrollIntoView({block:'center', behavior:'smooth'});
+    setTimeout(() => inp.focus(), 340);
+  });
 
   $('#bCart').addEventListener('click', openCart);
   $('#cartClose').addEventListener('click', closeCart);
