@@ -361,16 +361,23 @@ function initShell(){
   applyPoint();
   if (!pointChosen() && $('#pick')) openPick();
 
-  const hdr = $('#hdr');
-  addEventListener('scroll', () => {
+  /* один перерахунок на кадр, а не на кожну подію скролу */
+  const hdr = $('#hdr'), prog = $('#prog');
+  let ticking = false;
+  function onScroll(){
+    ticking = false;
     const y = scrollY;
     hdr.classList.toggle('small', y > 60);
-    const h = document.documentElement.scrollHeight - innerHeight;
-    const p = $('#prog');
-    if (p) p.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-    const bg = $('#heroBg');
-    if (bg && y < innerHeight) bg.style.transform = 'translate3d(0,' + (y * 0.22) + 'px,0)';
+    if (prog){
+      const h = document.documentElement.scrollHeight - innerHeight;
+      prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
     if (typeof spyScroll === 'function') spyScroll();
+  }
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(onScroll);
   }, {passive:true});
 
   renderCart();
