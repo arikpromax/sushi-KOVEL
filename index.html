@@ -59,21 +59,6 @@
 
 <section class="hero">
   <div class="hero-bg" id="heroBg">
-    <svg class="hero-art" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <g fill="none" stroke="rgba(226,82,58,.18)" stroke-width="1.2">
-        <circle cx="960" cy="180" r="150"/><circle cx="960" cy="180" r="108"/><circle cx="960" cy="180" r="58"/>
-        <circle cx="1120" cy="470" r="190"/><circle cx="1120" cy="470" r="126"/>
-      </g>
-      <g fill="none" stroke="rgba(217,199,174,.13)" stroke-width="1.2">
-        <circle cx="770" cy="520" r="118"/><circle cx="770" cy="520" r="76"/><circle cx="770" cy="520" r="36"/>
-        <circle cx="1050" cy="60" r="70"/>
-      </g>
-      <g opacity=".5">
-        <circle cx="960" cy="180" r="26" fill="rgba(226,82,58,.35)"/>
-        <circle cx="770" cy="520" r="16" fill="rgba(217,199,174,.22)"/>
-        <circle cx="1120" cy="470" r="20" fill="rgba(226,82,58,.22)"/>
-      </g>
-    </svg>
   </div>
   <div class="wrap">
     <p class="eyebrow">Ковель · Турійськ</p>
@@ -313,9 +298,6 @@ const BNR = [
 ];
 $('#bnrGrid').innerHTML = BNR.map(b =>
   '<a class="bnr" href="menu.html?c=' + b.c + '">' +
-    '<svg class="bnr-art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="1.4" aria-hidden="true">' +
-      '<circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="8"/>' +
-    '</svg>' +
     '<span class="bnr-t">' + b.n + '</span>' +
     '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
   '</a>').join('');
