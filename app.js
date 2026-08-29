@@ -191,13 +191,7 @@ function renderCheck(){
   if (!paper) return;
   const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT();
   paper.innerHTML =
-    '<div class="check-top"><div class="n">Sushi' +
-      '<svg viewBox="0 0 42 40" aria-hidden="true">' +
-        '<path d="M6.5 7.5v25" stroke="#211E19" stroke-width="3.2" stroke-linecap="round" fill="none"/>' +
-        '<path d="M8.1 20h9.6" stroke="#211E19" stroke-width="3.2" stroke-linecap="round" fill="none"/>' +
-        '<circle cx="29" cy="20" r="11.4" fill="#E2523A"/>' +
-        '<circle cx="29" cy="20" r="4.5" fill="#F4EFE5"/>' +
-      '</svg></div>' +
+    '<div class="check-top"><div class="n">SushiЮ</div>' +
       '<div class="m">' + p.n + ' · ' + p.addr + '</div></div>' +
     ids.map(id => {
       const m = byId(id);
