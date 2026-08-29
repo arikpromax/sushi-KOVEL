@@ -179,7 +179,7 @@ function renderCheck(){
   if (!paper) return;
   const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT();
   paper.innerHTML =
-    '<div class="check-top"><div class="n">SushiЮ</div>' +
+    '<div class="check-top"><div class="n">Sushi</div>' +
       '<div class="m">' + p.n + ' · ' + p.addr + '</div></div>' +
     ids.map(id => {
       const m = byId(id);
@@ -247,13 +247,9 @@ function lockScroll(){
 const io = new IntersectionObserver(en => {
   en.forEach(x => { if (x.isIntersecting){ x.target.classList.add('on'); io.unobserve(x.target); } });
 }, {rootMargin:'0px 0px -6% 0px', threshold:.05});
+/* картки не анімуємо — вони мають стояти нерухомо */
 function revealScan(){
   $$('.rv:not(.on)').forEach(el => io.observe(el));
-  $$('.card:not(.rv)').filter(el => !el.closest('.sheet')).forEach((el, i) => {
-    el.classList.add('rv');
-    el.style.transitionDelay = Math.min(i, 8) * 45 + 'ms';
-    io.observe(el);
-  });
 }
 
 /* ---------- спільні події ---------- */
