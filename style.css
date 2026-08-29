@@ -265,8 +265,9 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .bn-cart:hover .bubble{transform:translateY(-3px);background:var(--accent-d)}
 .bn-cart .bubble .ico{font-size:23px}
 .bn-cart .cnt{
-  position:absolute;top:-22px;right:12px;min-width:22px;height:22px;padding:0 6px;border-radius:999px;
-  background:var(--sand);color:#1A1512;font:800 11px/22px 'Manrope';text-align:center;
+  position:absolute;top:-31px;right:5px;z-index:3;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+  background:var(--sand);color:#1A1512;font:800 11px/20px 'Manrope';text-align:center;
+  box-shadow:0 0 0 3px var(--bg);
   transform:scale(0);transition:transform .3s cubic-bezier(.2,1.5,.4,1);
 }
 .bn-cart.has .cnt{transform:scale(1)}
@@ -277,6 +278,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
     border:1px solid var(--line-2);border-radius:999px;box-shadow:var(--shadow);height:72px;padding:0 10px;
   }
   .bn-cart .bubble{border-color:#131416}
+  .bn-cart .cnt{box-shadow:0 0 0 3px #131416}
 }
 
 /* ================= cart drawer ================= */
