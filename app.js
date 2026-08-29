@@ -343,9 +343,7 @@ function initShell(){
 
   $('#toCheck').addEventListener('click', openCheck);
   $('#checkBack').addEventListener('click', () => closeSheet('#check'));
-  $('#checkClose').addEventListener('click', () => { closeSheet('#check'); closeCart(); });
   $('#prodBack').addEventListener('click', () => closeSheet('#prod'));
-  $('#prodClose').addEventListener('click', () => closeSheet('#prod'));
 
   $('#shareBtn').addEventListener('click', async () => {
     const t = receiptText();
