@@ -307,10 +307,10 @@
 <script>
 /* банери категорій */
 const BNR = [
-  {c:'phil', n:'Філадельфія',  s:'Наш хіт',           cls:'is-accent'},
-  {c:'prem', n:'Преміум роли', s:'Для особливого дня', cls:''},
-  {c:'bake', n:'Запечені',     s:'Під сирною шапкою',  cls:''},
-  {c:'hand', n:'Хенд роли',    s:'Новинка',            cls:'is-sand'}
+  {c:'phil', n:'Філадельфія',  cls:'is-accent'},
+  {c:'prem', n:'Преміум роли', cls:''},
+  {c:'bake', n:'Запечені',     cls:''},
+  {c:'hand', n:'Хенд роли',    cls:'is-sand'}
 ];
 $('#bnrGrid').innerHTML = BNR.map(b =>
   '<a class="bnr ' + b.cls + '" href="menu.html?c=' + b.c + '">' +
@@ -318,7 +318,6 @@ $('#bnrGrid').innerHTML = BNR.map(b =>
       '<circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="8"/>' +
     '</svg>' +
     '<span class="bnr-t">' + b.n + '</span>' +
-    '<span class="bnr-s">' + b.s + '</span>' +
     '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
   '</a>').join('');
 

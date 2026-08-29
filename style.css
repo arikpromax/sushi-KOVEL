@@ -161,7 +161,6 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .bnr-art{position:absolute;right:-34px;top:-40px;width:180px;height:180px;opacity:.5;pointer-events:none;transition:transform .5s ease}
 .bnr:hover .bnr-art{transform:rotate(8deg) scale(1.06)}
 .bnr-t{position:relative;font-family:'Playfair Display',serif;font-size:27px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
-.bnr-s{position:relative;margin-top:8px;font-size:12px;line-height:1.45;color:var(--ink-3);max-width:16ch}
 .bnr-go{
   position:relative;margin-top:auto;display:flex;align-items:center;justify-content:center;
   width:42px;height:42px;border-radius:50%;background:rgba(240,234,226,.09);border:1px solid var(--line-2);
@@ -169,18 +168,15 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 }
 .bnr:hover .bnr-go{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateX(4px)}
 .bnr.is-accent{background:linear-gradient(150deg,#E2523A,#B93C27);border-color:transparent}
-.bnr.is-accent .bnr-s{color:rgba(255,255,255,.78)}
 .bnr.is-accent .bnr-go{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)}
 .bnr.is-accent:hover .bnr-go{background:#fff;color:var(--accent-d);border-color:#fff}
 .bnr.is-sand{background:linear-gradient(150deg,#E6DCCB,#CDBCA3);border-color:transparent;color:#221E19}
-.bnr.is-sand .bnr-s{color:rgba(34,30,25,.62)}
 .bnr.is-sand .bnr-go{background:rgba(34,30,25,.10);border-color:rgba(34,30,25,.26)}
 .bnr.is-sand:hover .bnr-go{background:#221E19;color:#E6DCCB;border-color:#221E19}
 @media (max-width:560px){
   .bnr-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .bnr{min-height:126px;padding:15px 15px 13px;border-radius:16px}
   .bnr-t{font-size:20px;letter-spacing:.1em}
-  .bnr-s{font-size:11px;margin-top:5px}
   .bnr-go{width:36px;height:36px;font-size:16px}
 }
 
