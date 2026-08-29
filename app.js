@@ -113,7 +113,7 @@ function cardHTML(m){
   const qty = cart[m.id] || 0;
   return '<article class="card' + (qty ? ' in' : '') + '" data-id="' + m.id + '">' +
     '<div class="ph">' +
-      (m.b ? '<span class="badge' + (m.b === 'Хіт' || m.b === 'Топ' ? ' hit' : '') + '">' + m.b + '</span>' : '') +
+      (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
       (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : '') +
     '</div>' +
     '<h3>' + m.n + '</h3>' +
@@ -190,7 +190,8 @@ function renderCheck(){
   if (!paper) return;
   const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT();
   paper.innerHTML =
-    '<div class="check-top"><div class="n">SushiЮ</div>' +
+    '<div class="check-top">' +
+      '<img class="check-logo" src="photos/logo-dark.png" alt="SushiЮ" width="460" height="222">' +
       '<div class="m">' + p.n + ' · ' + p.addr + '</div></div>' +
     ids.map(id => {
       const m = byId(id);
@@ -227,7 +228,7 @@ function openProd(id){
 
   $('#prodCat').textContent = cat;
   $('#prodBody').innerHTML =
-    '<div class="prod-ph">' + (m.b ? '<span class="badge' + (m.b === 'Хіт' || m.b === 'Топ' ? ' hit' : '') + '">' + m.b + '</span>' : '') + '</div>' +
+    '<div class="prod-ph">' + (m.b ? '<span class="badge">' + m.b + '</span>' : '') + '</div>' +
     '<h2 class="prod-n">' + m.n + '</h2>' +
     '<p class="prod-ing">' + (m.ing || '') + '</p>' +
     '<div class="prod-meta"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
