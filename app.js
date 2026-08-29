@@ -16,16 +16,22 @@ const FOLD = [
 function fold(s){
   s = (s || '').toLowerCase().replace(/[’'`ʼ]/g, '');
   for (let i = 0; i < FOLD.length; i++) s = s.split(FOLD[i][0]).join(FOLD[i][1]);
-  s = s.replace(/[ыийї]/g, 'и').replace(/[щш]/g, 'ш').replace(/[еэє]/g, 'е')
+  /* «і», «ї», «є», «ґ» мають згортатись, а не зникати */
+  s = s.replace(/[ыиійї]/g, 'и').replace(/[щш]/g, 'ш').replace(/[еэє]/g, 'е')
        .replace(/[ґг]/g, 'г').replace(/ь/g, '').replace(/я/g, 'а').replace(/ю/g, 'у')
        .replace(/ц/g, 'с').replace(/ч/g, 'с');
   return s.replace(/(.)\1+/g, '$1').replace(/[^а-яa-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 function matches(item, query){
   if (!query) return true;
-  const hay = fold(item.n + ' ' + (item.ing || '')).split(' ');
-  return fold(query).split(' ').filter(Boolean).every(w =>
-    hay.some(t => t.indexOf(w) === 0 || (w.length >= 4 && t.indexOf(w) > -1))
+  const q = fold(query);
+  if (!q) return true;
+  const hay = fold(item.n + ' ' + (item.ing || ''));
+  const words = hay.split(' ');
+  /* кожне слово запиту має збігтися з початком якогось слова назви
+     або складу; довші шматки шукаємо і всередині слова */
+  return q.split(' ').filter(Boolean).every(w =>
+    words.some(t => t.indexOf(w) === 0) || (w.length >= 3 && hay.indexOf(w) > -1)
   );
 }
 
