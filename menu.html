@@ -247,13 +247,34 @@ function renderGrid(){
     CATS.filter(c => c.id !== 'all').forEach(c => {
       const part = list.filter(m => m.c === c.id);
       if (!part.length) return;
-      html += '<h2 class="cat-title">' + c.n + '</h2><div class="grid">' + part.map(cardHTML).join('') + '</div>';
+      html += '<section class="cat-block" data-cat="' + c.id + '">' +
+                '<h2 class="cat-title">' + c.n + '</h2>' +
+                '<div class="grid">' + part.map(cardHTML).join('') + '</div>' +
+              '</section>';
     });
   } else {
     html = '<div class="grid" style="margin-top:22px">' + list.map(cardHTML).join('') + '</div>';
   }
   $('#grid').innerHTML = html;
   revealScan();
+  spyCat = null;
+  spyScroll();
+}
+
+/* ---- поки гортаєш «Усі», активний чіп сам стрибає на поточний розділ ---- */
+let spyCat = null;
+function spyScroll(){
+  if (cat !== 'all' || q) return;
+  const blocks = $$('.cat-block');
+  if (!blocks.length) return;
+  const line = $('.menu-bar').getBoundingClientRect().bottom + 24;
+  let cur = 'all';   /* поки не дійшли до першого розділу — світиться «Усі» */
+  blocks.forEach(b => { if (b.getBoundingClientRect().top <= line) cur = b.dataset.cat; });
+  if (cur === spyCat) return;
+  spyCat = cur;
+  $$('.chip').forEach(ch => ch.classList.toggle('on', ch.dataset.c === cur));
+  const act = document.querySelector('.chip.on'), box = $('#chips');
+  if (act) box.scrollTo({left: act.offsetLeft - box.clientWidth / 2 + act.offsetWidth / 2, behavior:'smooth'});
 }
 
 document.addEventListener('click', e => {
