@@ -78,6 +78,7 @@
         <svg class="ico"><use href="#i-search"/></svg>
         <input id="q" type="search" placeholder="Пошук: філадельфія, креветка, сет…" autocomplete="off">
         <button class="clr" id="qClear" type="button" aria-label="Очистити">&#10005;</button>
+        <button class="go" id="qGo" type="button"><svg class="ico"><use href="#i-search"/></svg><span>Пошук</span></button>
       </div>
       <button class="sortbtn" id="sortBtn"><svg class="ico"><use href="#i-sort"/></svg><span id="sortLbl">Популярні</span></button>
     </div>
@@ -287,6 +288,10 @@ $('#q').addEventListener('input', e => {
 $('#qClear').addEventListener('click', () => {
   q = ''; $('#q').value = ''; $('#searchBox').classList.remove('has');
   renderGrid(); renderCart();
+});
+$('#qGo').addEventListener('click', () => {
+  $('#q').blur();
+  $('#grid').scrollIntoView({block:'start', behavior:'smooth'});
 });
 $('#pointBtnFtr').addEventListener('click', openPick);
 
