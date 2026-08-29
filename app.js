@@ -6,65 +6,6 @@ const $$ = s => Array.prototype.slice.call(document.querySelectorAll(s));
 const money = v => v.toLocaleString('uk-UA') + ' ₴';
 const byId  = id => MENU.filter(m => m.id === id)[0];
 
-/* ---------- малюнок страви для позицій без фото ---------- */
-const PAL = {
-  'лосос':'#E2724F','тунец':'#B0402F','тунц':'#B0402F','креветк':'#E58A5E','краб':'#E0A06A',
-  'вугор':'#8A5A38','вугр':'#8A5A38','авокадо':'#8FA870','огірок':'#9DB57E','огірк':'#9DB57E',
-  'чука':'#6F8E5A','сир':'#EFE6D6','крем':'#EFE6D6','ікра':'#E08A3C','масаго':'#E08A3C',
-  'тобіко':'#D96A2E','кети':'#E0552E','перець':'#C7523E','салат':'#7E9B63','імбир':'#E4B39A',
-  'васабі':'#8FA870','соус':'#A9754A','кола':'#7A4A33','лимонад':'#D9C7AE'
-};
-const FALLBACK = {
-  set:['#E2724F','#EFE6D6','#8FA870','#E08A3C'], phil:['#E2724F','#EFE6D6','#9DB57E'],
-  cal:['#E0A06A','#8FA870','#E08A3C'],           bake:['#EFE6D6','#E2724F','#E0A06A'],
-  hand:['#E2724F','#7E9B63','#EFE6D6'],          maki:['#E2724F','#9DB57E'],
-  nig:['#E2724F','#EDE6DA'],                     add:['#A9754A','#D9C7AE']
-};
-let artN = 0;
-function art(item){
-  const ing = ((item.ing || '') + ' ' + item.n).toLowerCase();
-  let cols = [];
-  for (const k in PAL) if (ing.indexOf(k) > -1 && cols.indexOf(PAL[k]) < 0) cols.push(PAL[k]);
-  (FALLBACK[item.c] || ['#E2724F','#EFE6D6']).forEach(c => { if (cols.indexOf(c) < 0) cols.push(c); });
-  cols = cols.slice(0, 5);
-
-  const gid  = 'g' + (++artN);
-  const seed = item.id.charCodeAt(0) * 7 + item.id.length * 13 + item.p;
-  const open = '<svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
-    '<defs><radialGradient id="' + gid + '" cx="50%" cy="38%" r="62%">' +
-    '<stop offset="0" stop-color="#242629"/><stop offset="1" stop-color="#131415"/></radialGradient></defs>' +
-    '<rect width="100" height="100" fill="url(#' + gid + ')"/>' +
-    '<ellipse cx="50" cy="74" rx="36" ry="7" fill="rgba(0,0,0,.34)"/>';
-
-  if (item.c === 'add'){
-    return open +
-      '<ellipse cx="50" cy="56" rx="30" ry="18" fill="#EDE6DA"/>' +
-      '<ellipse cx="50" cy="55" rx="21" ry="12" fill="' + cols[0] + '"/>' +
-      '<ellipse cx="50" cy="56" rx="30" ry="18" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.6"/>' +
-      '<ellipse cx="43" cy="50" rx="5" ry="2.4" fill="rgba(255,255,255,.20)"/></svg>';
-  }
-
-  const rolls = [[30,62,16.5],[50,45,20],[70,63,15.5]];
-  let out = '';
-  rolls.forEach((r, i) => {
-    const cx = r[0], cy = r[1], rad = r[2];
-    out += '<circle cx="' + cx + '" cy="' + cy + '" r="' + rad + '" fill="#1A1C1E"/>' +
-           '<circle cx="' + cx + '" cy="' + cy + '" r="' + (rad - 2.6).toFixed(1) + '" fill="#EDE6DA"/>';
-    const n = 1 + ((seed + i) % 3);
-    for (let k = 0; k < n; k++){
-      const ang = ((seed * 29 + i * 111 + k * (360 / n)) % 360) * Math.PI / 180;
-      const off = n === 1 ? 0 : rad * 0.30;
-      out += '<circle cx="' + (cx + Math.cos(ang) * off).toFixed(1) +
-             '" cy="' + (cy + Math.sin(ang) * off).toFixed(1) +
-             '" r="' + (n === 1 ? rad * 0.46 : rad * 0.30).toFixed(1) +
-             '" fill="' + cols[(i + k) % cols.length] + '"/>';
-    }
-    out += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (rad - 1.3).toFixed(1) +
-           '" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>';
-  });
-  return open + out + '</svg>';
-}
-
 /* ---------- пошук: кирилиця ↔ латиниця ---------- */
 const FOLD = [
   ['sh','ш'],['ch','ч'],['zh','ж'],['kh','х'],['ts','ц'],['ya','я'],['yu','ю'],['ph','ф'],
@@ -159,7 +100,7 @@ function cardHTML(m){
   return '<article class="card' + (qty ? ' in' : '') + '" data-id="' + m.id + '">' +
     '<div class="ph">' +
       (m.b ? '<span class="badge' + (m.b === 'Хіт' || m.b === 'Топ' ? ' hit' : '') + '">' + m.b + '</span>' : '') +
-      (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : art(m)) +
+      (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : '') +
     '</div>' +
     '<h3>' + m.n + '</h3>' +
     '<p class="ing">' + (m.ing || '') + '</p>' +
@@ -185,7 +126,7 @@ function renderCart(){
     } else {
       body.innerHTML = ids.map(id => {
         const m = byId(id);
-        return '<div class="ci"><div class="ci-ph">' + (m.img ? '<img src="' + m.img + '" alt="">' : art(m)) + '</div>' +
+        return '<div class="ci"><div class="ci-ph">' + (m.img ? '<img src="' + m.img + '" alt="">' : '') + '</div>' +
           '<div class="ci-b"><h4>' + m.n + '</h4>' +
           '<div class="m">' + (m.wt || '') + ' · ' + m.p + ' ₴</div>' +
           '<div class="ci-r"><button data-dec="' + id + '">&minus;</button><b>' + cart[id] + '</b>' +
@@ -260,8 +201,7 @@ function initShell(){
       '<span class="pt-addr">' + p.addr + '</span>' +
       '<span class="pt-hours">щодня ' + p.hours + '</span>' +
     '</button>').join('');
-  const pg = $('#pickGrid');   if (pg) pg.innerHTML = tilesHTML;
-  const sg = $('#spotsGrid');  if (sg) sg.innerHTML = tilesHTML;
+  const pg = $('#pickGrid'); if (pg) pg.innerHTML = tilesHTML;
 
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-point-pick]');
