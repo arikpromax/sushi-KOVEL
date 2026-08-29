@@ -88,6 +88,53 @@ function matches(item, query){
   );
 }
 
+/* ---------- обрана точка ---------- */
+let pointId = POINTS[0].id;
+try {
+  const saved = localStorage.getItem('sushiu_point');
+  if (saved && POINTS.some(p => p.id === saved)) pointId = saved;
+} catch (e) {}
+const POINT = () => POINTS.filter(p => p.id === pointId)[0] || POINTS[0];
+function setPoint(id, remember){
+  if (!POINTS.some(p => p.id === id)) return;
+  pointId = id;
+  if (remember !== false) { try { localStorage.setItem('sushiu_point', id); } catch (e) {} }
+  applyPoint();
+  renderCart();
+}
+function pointChosen(){
+  try { return !!localStorage.getItem('sushiu_point'); } catch (e) { return false; }
+}
+
+/* Підставляє дані точки в усі елементи з data-pt / data-pt-href */
+function applyPoint(){
+  const p = POINT();
+  const val = {
+    name: p.n, addr: p.addr, full: p.full, hours: p.hours,
+    cityAddr: p.n + ', ' + p.addr,
+    tel1: p.tels[0].d, tel2: p.tels[1] ? p.tels[1].d : '', note: p.note
+  };
+  $$('[data-pt]').forEach(el => {
+    const k = el.dataset.pt;
+    if (k === 'tel2' && !p.tels[1]) { el.style.display = 'none'; return; }
+    el.style.removeProperty('display');
+    if (val[k] !== undefined) el.textContent = val[k];
+  });
+  $$('[data-pt-href]').forEach(el => {
+    const k = el.dataset.ptHref;
+    if (k === 'map')  el.href = p.map;
+    if (k === 'tel1') el.href = 'tel:' + p.tels[0].t;
+    if (k === 'tel2'){
+      if (!p.tels[1]) { el.style.display = 'none'; return; }
+      el.style.removeProperty('display');
+      el.href = 'tel:' + p.tels[1].t;
+    }
+  });
+  const dl = $('#delivList');
+  if (dl) dl.innerHTML = p.delivery.map(d => '<li>' + d.t + '</li>').join('') + '<li>' + p.note + '</li>';
+  $$('[data-point-pick]').forEach(el => el.classList.toggle('on', el.dataset.pointPick === pointId));
+}
+
 /* ---------- кошик ---------- */
 let cart = {};
 try { cart = JSON.parse(localStorage.getItem('sushiu_cart') || '{}'); } catch (e) { cart = {}; }
@@ -102,9 +149,9 @@ function cartSum(){
   return {total: total, count: count};
 }
 function deliveryFor(total){
-  for (let i = 0; i < SHOP.delivery.length; i++)
-    if (total >= SHOP.delivery[i].from) return SHOP.delivery[i];
-  return SHOP.delivery[SHOP.delivery.length - 1];
+  const d = POINT().delivery;
+  for (let i = 0; i < d.length; i++) if (total >= d[i].from) return d[i];
+  return d[d.length - 1];
 }
 
 function cardHTML(m){
@@ -118,7 +165,7 @@ function cardHTML(m){
     '<p class="ing">' + (m.ing || '') + '</p>' +
     '<div class="card-f"><span class="wt">' + (m.wt || '') + '</span>' +
       '<span class="price"><i>₴</i>' + m.p + '</span></div>' +
-    '<button class="add" data-add="' + m.id + '">Обрати</button>' +
+    '<button class="add" data-add="' + m.id + '">Вибрати</button>' +
     '<div class="step"><button data-dec="' + m.id + '" aria-label="Менше">&minus;</button>' +
     '<b data-qty="' + m.id + '">' + qty + '</b>' +
     '<button data-inc="' + m.id + '" aria-label="Більше">+</button></div>' +
@@ -133,7 +180,7 @@ function renderCart(){
   if (body){
     if (!ids.length){
       body.innerHTML = '<div class="cart-empty"><svg class="ico"><use href="#i-bag"/></svg>' +
-        '<p>Кошик поки порожній.<br>Оберіть щось смачне з меню.</p>' +
+        '<p>Тут зʼявиться те, що ви виберете<br>в меню. Потім просто зателефонуйте.</p>' +
         '<a class="btn btn-p" href="menu.html">Відкрити меню</a></div>';
     } else {
       body.innerHTML = ids.map(id => {
@@ -168,22 +215,6 @@ function renderCart(){
   saveCart();
 }
 
-function orderText(){
-  const ids = cartLines();
-  if (!ids.length) return '';
-  const s = cartSum();
-  const d = deliveryFor(s.total);
-  const lines = ids.map(id => {
-    const m = byId(id);
-    return '• ' + m.n + ' — ' + cart[id] + ' × ' + m.p + ' ₴';
-  });
-  return 'Замовлення з сайту SushiЮ:\n' + lines.join('\n') +
-    '\n\nСума: ' + money(s.total) +
-    '\nДоставка: ' + (d.price === 0 ? 'безкоштовно' : money(d.price)) +
-    '\nРазом: ' + money(s.total + d.price) +
-    '\n\nІмʼя:\nТелефон:\nАдреса / самовиніс:';
-}
-
 /* ---------- поява при скролі ---------- */
 const io = new IntersectionObserver(en => {
   en.forEach(x => { if (x.isIntersecting){ x.target.classList.add('on'); io.unobserve(x.target); } });
@@ -215,26 +246,37 @@ document.addEventListener('click', e => {
 const openCart  = () => { $('#cart').classList.add('on');    $('#scrim').classList.add('on');    document.body.style.overflow = 'hidden'; };
 const closeCart = () => { $('#cart').classList.remove('on'); $('#scrim').classList.remove('on'); document.body.style.overflow = ''; };
 
-function initShell(){
-  const igg = $('#igGrid');
-  if (igg) igg.innerHTML = IG_POSTS.map(src =>
-    '<a href="' + SHOP.ig + '" target="_blank" rel="noopener"><img src="' + src + '" alt="Допис SushiЮ" loading="lazy"></a>').join('');
+/* ---------- модалка вибору точки ---------- */
+const openPick  = () => { $('#pick').classList.add('on'); document.body.style.overflow = 'hidden'; };
+const closePick = () => { $('#pick').classList.remove('on'); document.body.style.overflow = ''; };
 
+function initShell(){
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* плитки вибору точки — і в модалці, і в секції «Наші заклади» */
+  const tilesHTML = POINTS.map(p =>
+    '<button class="pt-tile" data-point-pick="' + p.id + '">' +
+      '<span class="pt-city">' + p.n + '</span>' +
+      '<span class="pt-addr">' + p.addr + '</span>' +
+      '<span class="pt-hours">щодня ' + p.hours + '</span>' +
+    '</button>').join('');
+  const pg = $('#pickGrid');   if (pg) pg.innerHTML = tilesHTML;
+  const sg = $('#spotsGrid');  if (sg) sg.innerHTML = tilesHTML;
+
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-point-pick]');
+    if (t){ setPoint(t.dataset.pointPick); closePick(); return; }
+    if (e.target.closest('#pointBtn')) { openPick(); return; }
+    if (e.target.closest('#pickClose') || e.target === $('#pick')) closePick();
+  });
 
   $('#bCart').addEventListener('click', openCart);
   $('#cartClose').addEventListener('click', closeCart);
   $('#scrim').addEventListener('click', closeCart);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeCart(); closePick(); } });
 
-  $('#sendIg').addEventListener('click', () => {
-    const t = orderText();
-    if (!t) return;
-    if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => {
-      $('#hint').textContent = 'Замовлення скопійовано — вставте його в Direct.';
-      $('#hint').style.color = 'var(--ok)';
-    }).catch(() => {});
-  });
+  applyPoint();
+  if (!pointChosen() && $('#pick')) openPick();
 
   const hdr = $('#hdr');
   addEventListener('scroll', () => {
