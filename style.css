@@ -245,31 +245,44 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
   position:fixed;left:0;right:0;bottom:0;z-index:65;height:var(--bnav);
   display:flex;align-items:center;justify-content:space-around;
   padding:0 6px env(safe-area-inset-bottom,0px);
-  background:rgba(15,16,17,.93);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-top:1px solid var(--line);
+  background:rgba(15,16,17,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--line);box-shadow:0 -16px 36px -26px rgba(0,0,0,.95);
+}
+.bnav::before{
+  content:'';position:absolute;left:8%;right:8%;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(240,234,226,.18),transparent);
 }
 .bn{
   flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
   padding:8px 2px;background:none;border:0;cursor:pointer;color:var(--ink-3);transition:color .24s;
-  font:600 9.5px/1 'Manrope';letter-spacing:.15em;text-transform:uppercase;text-align:center;
+  font:600 10px/1 'Manrope';letter-spacing:.13em;text-transform:uppercase;text-align:center;
 }
-.bn .ico{font-size:21px}
+.bn .ico{font-size:21px;transition:transform .24s ease}
+.bn:hover .ico{transform:translateY(-2px)}
 .bn:hover,.bn.act{color:var(--ink)}
 .bn.act .ico{color:var(--accent)}
 .bn-cart{position:relative;flex:0 0 84px}
 .bn-cart .bubble{
-  width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:var(--accent);color:#fff;margin-top:-30px;border:5px solid var(--bg);
-  box-shadow:0 12px 26px -10px rgba(226,82,58,.7);transition:transform .26s ease,background .26s;
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--accent);color:#fff;margin-top:-26px;border:0;
+  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 14px 28px -12px rgba(226,82,58,.85);
+  transition:transform .26s ease,background .26s,box-shadow .26s;
 }
-.bn-cart:hover .bubble{transform:translateY(-3px);background:var(--accent-d)}
+.bn-cart:hover .bubble{
+  transform:translateY(-3px);background:var(--accent-d);
+  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 18px 34px -12px rgba(226,82,58,1);
+}
 .bn-cart .bubble .ico{font-size:23px}
 .bn-cart .cnt{
-  position:absolute;top:-31px;right:5px;z-index:3;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
+  position:absolute;top:-24px;right:9px;z-index:3;min-width:20px;height:20px;padding:0 6px;border-radius:999px;
   background:var(--sand);color:#1A1512;font:800 11px/20px 'Manrope';text-align:center;
-  box-shadow:0 0 0 3px var(--bg);
+  box-shadow:0 3px 9px rgba(0,0,0,.55);
   transform:scale(0);transition:transform .3s cubic-bezier(.2,1.5,.4,1);
 }
+@keyframes cntBob{0%,84%,100%{transform:scale(1) translateY(0)}90%{transform:scale(1.14) translateY(-2px)}96%{transform:scale(1) translateY(0)}}
+@keyframes cntBump{0%{transform:scale(1)}45%{transform:scale(1.4)}100%{transform:scale(1)}}
+.bn-cart.has .cnt{animation:cntBob 3.6s ease-in-out .45s infinite}
+.bn-cart.has .cnt.bump{animation:cntBump .45s cubic-bezier(.2,1.7,.4,1)}
 .bn-cart.has .cnt{transform:scale(1)}
 .bn-cart .lbl{margin-top:5px;color:var(--ink-3)}
 @media (min-width:1024px){
@@ -277,8 +290,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
     left:50%;right:auto;transform:translateX(-50%);bottom:20px;width:min(640px,calc(100% - 40px));
     border:1px solid var(--line-2);border-radius:999px;box-shadow:var(--shadow);height:72px;padding:0 10px;
   }
-  .bn-cart .bubble{border-color:#131416}
-  .bn-cart .cnt{box-shadow:0 0 0 3px #131416}
+  .bnav::before{display:none}
 }
 
 /* ================= cart drawer ================= */

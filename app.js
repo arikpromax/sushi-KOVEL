@@ -81,6 +81,8 @@ let cart = {};
 try { cart = JSON.parse(localStorage.getItem('sushiu_cart') || '{}'); } catch (e) { cart = {}; }
 const saveCart = () => { try { localStorage.setItem('sushiu_cart', JSON.stringify(cart)); } catch (e) {} };
 
+let lastCount = -1;   /* щоб лічильник підстрибував лише коли додали */
+
 function cartLines(){
   return Object.keys(cart).filter(id => cart[id] > 0 && byId(id));
 }
@@ -145,8 +147,17 @@ function renderCart(){
   const fs = $('#fSub');   if (fs) fs.textContent = money(s.total);
   const fc = $('#fCount'); if (fc) fc.textContent = s.count;
   const ft = $('#fTotal'); if (ft) ft.textContent = money(s.total + (s.count ? d.price : 0));
-  const bc = $('#bCount'); if (bc) bc.textContent = s.count;
-  const bt = $('#bCart');  if (bt) bt.classList.toggle('has', s.count > 0);
+  const bc = $('#bCount'), bt = $('#bCart');
+  if (bc && bt){
+    bc.textContent = s.count;
+    bt.classList.toggle('has', s.count > 0);
+    if (lastCount >= 0 && s.count > lastCount){
+      bc.classList.remove('bump');
+      void bc.offsetWidth;            /* перезапуск анімації */
+      bc.classList.add('bump');
+    }
+    lastCount = s.count;
+  }
 
   $$('[data-qty]').forEach(el => {
     const c = el.closest('.card');
@@ -209,6 +220,9 @@ function initShell(){
     if (e.target.closest('#pointBtn')) { openPick(); return; }
     if (e.target.closest('#pickClose') || e.target === $('#pick')) closePick();
   });
+
+  const bc = $('#bCount');
+  if (bc) bc.addEventListener('animationend', () => bc.classList.remove('bump'));
 
   $('#bCart').addEventListener('click', openCart);
   $('#cartClose').addEventListener('click', closeCart);
