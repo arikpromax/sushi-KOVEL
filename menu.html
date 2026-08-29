@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0F1011">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Prata&family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600&family=Sacramento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -244,7 +244,7 @@ $('#q').value = q;
 $('#searchBox').classList.toggle('has', !!q);
 
 function renderGrid(){
-  const list = MENU.filter(m => (cat === 'all' || m.c === cat) && matches(m, q))
+  const list = searchMenu(MENU.filter(m => cat === 'all' || m.c === cat), q)
                    .slice().sort(SORTS[sort].f);
   if (!list.length){
     $('#grid').innerHTML = '<div class="empty"><b>Нічого не знайшли</b>' +

@@ -51,7 +51,7 @@ button,input,select{font:inherit;color:inherit}
 
 /* ================= typography ================= */
 .eyebrow{font:500 11px/1 'Manrope',sans-serif;letter-spacing:.30em;text-transform:uppercase;color:var(--ink-3);margin:0}
-h1,h2,h3{margin:0;font-family:'Prata',Georgia,serif;font-weight:400;letter-spacing:.02em}
+h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;letter-spacing:.02em}
 .sec-h{font-size:clamp(30px,5vw,50px);line-height:1.05;text-transform:uppercase;letter-spacing:.10em}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:28px}
 .sec-head p.sub{margin:9px 0 0;color:var(--ink-2);max-width:54ch;font-size:15px}
@@ -123,7 +123,7 @@ h1,h2,h3{margin:0;font-family:'Prata',Georgia,serif;font-weight:400;letter-spaci
 }
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .lead{
-  margin:18px 0 0;font-family:'Sacramento',cursive;font-size:clamp(28px,4.8vw,42px);
+  margin:22px 0 0;font-family:'Sacramento',cursive;font-size:clamp(21px,2.9vw,30px);
   color:var(--sand);line-height:1;
 }
 .hero-cta{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px}
@@ -141,7 +141,7 @@ h1,h2,h3{margin:0;font-family:'Prata',Georgia,serif;font-weight:400;letter-spaci
 /* ================= ticker ================= */
 .ticker{border-block:1px solid var(--line);background:var(--bg-2);overflow:hidden;padding:12px 0}
 .ticker-in{display:flex;gap:32px;width:max-content;animation:tick 34s linear infinite}
-.ticker span{display:inline-flex;align-items:center;gap:32px;white-space:nowrap;font-family:'Prata',serif;font-size:17px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
+.ticker span{display:inline-flex;align-items:center;gap:32px;white-space:nowrap;font-family:'Playfair Display',serif;font-size:17px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
 .ticker span::after{content:'';width:5px;height:5px;background:var(--accent);border-radius:50%;flex:none}
 @keyframes tick{to{transform:translateX(-50%)}}
 
@@ -159,7 +159,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .bnr:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:var(--shadow)}
 .bnr-art{position:absolute;right:-34px;top:-40px;width:180px;height:180px;opacity:.5;pointer-events:none;transition:transform .5s ease}
 .bnr:hover .bnr-art{transform:rotate(8deg) scale(1.06)}
-.bnr-t{position:relative;font-family:'Prata',serif;font-size:27px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
+.bnr-t{position:relative;font-family:'Playfair Display',serif;font-size:27px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
 .bnr-s{position:relative;margin-top:8px;font-size:12px;line-height:1.45;color:var(--ink-3);max-width:16ch}
 .bnr-go{
   position:relative;margin-top:auto;display:flex;align-items:center;justify-content:center;
@@ -234,7 +234,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .card .ing{margin:7px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink-3);flex:1}
 .card-f{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
 .wt{font-size:11.5px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
-.price{display:flex;align-items:baseline;gap:4px;font-family:'Prata',serif;font-size:27px;line-height:1;white-space:nowrap}
+.price{display:flex;align-items:baseline;gap:4px;font-family:'Playfair Display',serif;font-size:27px;line-height:1;white-space:nowrap}
 .price i{font-style:normal;font-size:15px;color:var(--ink-3)}
 .add{width:100%;margin-top:12px;padding:12px;border-radius:999px;border:1px solid var(--line-2);background:transparent;font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:.22s}
 .add:hover{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -244,7 +244,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .card.in .add{display:none}
 .card.in .step{display:flex}
 .empty{padding:56px 20px;text-align:center;color:var(--ink-3)}
-.empty b{display:block;font-family:'Prata',serif;font-size:26px;color:var(--ink);margin-bottom:8px;letter-spacing:.06em}
+.empty b{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:8px;letter-spacing:.06em}
 
 /* топові позиції — горизонтальна стрічка на головній */
 .rail{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 0 8px;scroll-snap-type:x mandatory}
@@ -267,7 +267,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .promo{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;padding:32px 34px;border:1px solid rgba(226,82,58,.34);border-radius:var(--r);background:linear-gradient(120deg,rgba(226,82,58,.16),rgba(26,28,30,.5) 58%)}
 .promo h3{font-size:clamp(24px,3.6vw,34px);letter-spacing:.1em;text-transform:uppercase}
 .promo p{margin:8px 0 0;color:var(--ink-2);font-size:14px;max-width:56ch}
-.promo .big{font-family:'Prata',serif;font-size:clamp(56px,9vw,92px);line-height:.85;color:var(--accent);letter-spacing:-.02em}
+.promo .big{font-family:'Playfair Display',serif;font-size:clamp(56px,9vw,92px);line-height:.85;color:var(--accent);letter-spacing:-.02em}
 @media (max-width:560px){.promo{padding:24px 21px}}
 
 /* ================= вибір точки ================= */
@@ -294,7 +294,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
   content:'Обрано';position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:999px;
   background:var(--accent);color:#fff;font:700 8.5px/1 'Manrope';letter-spacing:.14em;text-transform:uppercase;
 }
-.pt-city{font-family:'Prata',serif;font-size:27px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
+.pt-city{font-family:'Playfair Display',serif;font-size:27px;letter-spacing:.16em;text-transform:uppercase;line-height:1}
 .pt-addr{font-size:13px;color:var(--ink-2)}
 .pt-hours{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
 
@@ -312,7 +312,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .ftr h4{margin:0 0 15px;font:600 11px/1 'Manrope';letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3)}
 .ftr p,.ftr a{font-size:14.5px;color:var(--ink-2);margin:0 0 9px;display:block;transition:.2s}
 .ftr a:hover{color:var(--accent)}
-.ftr .tel-big{font-family:'Prata',serif;font-size:26px;color:var(--ink);letter-spacing:.05em;margin-bottom:5px}
+.ftr .tel-big{font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);letter-spacing:.05em;margin-bottom:5px}
 .ftr-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:21px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
 .socs{display:flex;gap:10px;margin-top:15px}
 .socs a{width:42px;height:42px;border:1px solid var(--line-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px}
@@ -412,7 +412,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .ci-r button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line-2);background:none;cursor:pointer;font-size:14px;line-height:1}
 .ci-r button:hover{border-color:var(--accent);color:var(--accent)}
 .ci-r b{font-size:13px;min-width:18px;text-align:center}
-.ci-price{margin-left:auto;font-family:'Prata',serif;font-size:20px;white-space:nowrap}
+.ci-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;white-space:nowrap}
 .cart-empty{text-align:center;padding:56px 10px;color:var(--ink-3)}
 .cart-empty .ico{font-size:44px;color:var(--line-2);margin:0 auto 14px}
 .cart-empty .btn{margin-top:18px}
@@ -420,7 +420,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .f-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
 .f-row b{color:var(--ink);font-weight:600}
 .f-row.free b{color:var(--ok)}
-.f-total{display:flex;justify-content:space-between;align-items:baseline;margin:13px 0 15px;font-family:'Prata',serif}
+.f-total{display:flex;justify-content:space-between;align-items:baseline;margin:13px 0 15px;font-family:'Playfair Display',serif}
 .f-total span{font-size:13px;font-family:'Manrope';letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 .f-total b{font-size:31px;font-weight:400}
 .cart-f .btn{width:100%}
@@ -440,7 +440,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .check-li .l{min-width:0}
 .check-li .l b{display:block;font:600 14.5px/1.35 'Manrope'}
 .check-li .l span{font-size:11.5px;color:rgba(33,30,25,.55)}
-.check-li .r{font-family:'Prata',serif;font-size:20px;white-space:nowrap}
+.check-li .r{font-family:'Playfair Display',serif;font-size:20px;white-space:nowrap}
 .check-sum{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:rgba(33,30,25,.68);margin-top:14px}
 .check-sum b{color:#211E19}
 .check-sum.free b{color:#4A7A45}
@@ -449,7 +449,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
   margin-top:14px;padding-top:14px;border-top:2px solid rgba(33,30,25,.75);
 }
 .check-total span{font:700 12px/1 'Manrope';letter-spacing:.18em;text-transform:uppercase}
-.check-total b{font-family:'Prata',serif;font-size:32px;font-weight:400}
+.check-total b{font-family:'Playfair Display',serif;font-size:32px;font-weight:400}
 .check-note{margin:16px 0 0;font-size:11.5px;line-height:1.55;color:rgba(33,30,25,.6);text-align:center}
 
 /* ================= сторінка позиції ================= */
@@ -462,7 +462,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .prod-ing{margin:12px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
 .prod-meta{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
 .prod-meta .price{font-size:34px}
-.also-h{margin:34px 0 14px;font-family:'Prata',serif;font-size:22px;letter-spacing:.16em;text-transform:uppercase}
+.also-h{margin:34px 0 14px;font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.16em;text-transform:uppercase}
 .prod-add{display:flex;flex-direction:column}
 .prod-add .add{margin-top:0;padding:16px;font-size:12.5px;background:var(--accent);border-color:var(--accent);color:#fff}
 .prod-add .add:hover{background:var(--accent-d);border-color:var(--accent-d)}

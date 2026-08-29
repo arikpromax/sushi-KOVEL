@@ -22,17 +22,23 @@ function fold(s){
        .replace(/ц/g, 'с').replace(/ч/g, 'с');
   return s.replace(/(.)\1+/g, '$1').replace(/[^а-яa-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 }
-function matches(item, query){
+/* deep=false — шукаємо тільки в назві (так гість і очікує),
+   deep=true  — запасний прохід по складу, якщо в назвах нічого */
+function matches(item, query, deep){
   if (!query) return true;
   const q = fold(query);
   if (!q) return true;
-  const hay = fold(item.n + ' ' + (item.ing || ''));
+  const hay = deep ? fold(item.n + ' ' + (item.ing || '')) : fold(item.n);
   const words = hay.split(' ');
-  /* кожне слово запиту має збігтися з початком якогось слова назви
-     або складу; довші шматки шукаємо і всередині слова */
   return q.split(' ').filter(Boolean).every(w =>
     words.some(t => t.indexOf(w) === 0) || (w.length >= 3 && hay.indexOf(w) > -1)
   );
+}
+/* відфільтрувати меню: спершу за назвами, потім, якщо порожньо, за складом */
+function searchMenu(list, query){
+  if (!query) return list;
+  const byName = list.filter(m => matches(m, query));
+  return byName.length ? byName : list.filter(m => matches(m, query, true));
 }
 
 /* ---------- обрана точка ---------- */
