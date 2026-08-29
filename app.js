@@ -166,6 +166,57 @@ function renderCart(){
     if (c) c.classList.toggle('in', !!cart[el.dataset.qty]);
   });
   saveCart();
+  if (onCheck){ if (!ids.length) showCheck(false); else renderCheck(); }
+}
+
+/* ---------- чек ---------- */
+function renderCheck(){
+  const paper = $('#checkPaper');
+  if (!paper) return;
+  const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT();
+  paper.innerHTML =
+    '<div class="check-top"><div class="n">SushiЮ</div>' +
+      '<div class="m">' + p.n + ' · ' + p.addr + '</div></div>' +
+    ids.map(id => {
+      const m = byId(id);
+      return '<div class="check-li"><div class="l"><b>' + m.n + '</b>' +
+        '<span>' + cart[id] + ' × ' + m.p + ' ₴' + (m.wt ? ' · ' + m.wt : '') + '</span></div>' +
+        '<div class="r">' + money(m.p * cart[id]) + '</div></div>';
+    }).join('') +
+    '<div class="check-sum"><span>Сума</span><b>' + money(s.total) + '</b></div>' +
+    '<div class="check-sum' + (d.price === 0 ? ' free' : '') + '"><span>Доставка</span><b>' +
+      (d.price === 0 ? 'безкоштовно' : money(d.price)) + '</b></div>' +
+    '<div class="check-total"><span>Разом</span><b>' + money(s.total + d.price) + '</b></div>' +
+    '<p class="check-note">Продиктуйте цей список менеджеру<br>' + p.n + ' · щодня ' + p.hours + '</p>';
+}
+
+function receiptText(){
+  const ids = cartLines();
+  if (!ids.length) return '';
+  const s = cartSum(), d = deliveryFor(s.total), p = POINT();
+  return 'Замовлення SushiЮ (' + p.n + ')\n' +
+    ids.map(id => { const m = byId(id); return '• ' + m.n + ' — ' + cart[id] + ' × ' + m.p + ' ₴'; }).join('\n') +
+    '\n\nСума: ' + money(s.total) +
+    '\nДоставка: ' + (d.price === 0 ? 'безкоштовно' : money(d.price)) +
+    '\nРазом: ' + money(s.total + d.price);
+}
+
+let onCheck = false;
+function showCheck(on){
+  onCheck = on && cartLines().length > 0;
+  if (onCheck) renderCheck();
+  $('#cartBody').hidden      = onCheck;
+  $('#checkPaper').hidden    = !onCheck;
+  $('#sumRows').hidden       = onCheck;
+  $('#toCheck').hidden       = onCheck;
+  $('#checkActions').hidden  = !onCheck;
+  $('#checkBack').hidden     = !onCheck;
+  $('#cartTitle').textContent = onCheck ? 'Ваш чек' : 'Замовлення';
+  $('#hint').textContent = onCheck
+    ? 'Замовлення нікуди не відправляється — назвіть позиції з чека по телефону.'
+    : 'Замовлення нікуди не відправляється — просто зателефонуйте й назвіть позиції.';
+  $('#hint').style.color = '';
+  $('.cart-scroll').scrollTop = 0;
 }
 
 /* ---------- поява при скролі ---------- */
@@ -196,7 +247,7 @@ document.addEventListener('click', e => {
   }
 });
 
-const openCart  = () => { $('#cart').classList.add('on');    $('#scrim').classList.add('on');    document.body.style.overflow = 'hidden'; };
+const openCart  = () => { showCheck(false); $('#cart').classList.add('on');    $('#scrim').classList.add('on');    document.body.style.overflow = 'hidden'; };
 const closeCart = () => { $('#cart').classList.remove('on'); $('#scrim').classList.remove('on'); document.body.style.overflow = ''; };
 
 /* ---------- модалка вибору точки ---------- */
@@ -239,7 +290,25 @@ function initShell(){
   $('#bCart').addEventListener('click', openCart);
   $('#cartClose').addEventListener('click', closeCart);
   $('#scrim').addEventListener('click', closeCart);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeCart(); closePick(); } });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (onCheck) showCheck(false); else closeCart();
+    closePick();
+  });
+
+  $('#toCheck').addEventListener('click', () => { if (cartLines().length) showCheck(true); });
+  $('#checkBack').addEventListener('click', () => showCheck(false));
+
+  $('#shareBtn').addEventListener('click', async () => {
+    const t = receiptText();
+    if (!t) return;
+    try {
+      if (navigator.share) { await navigator.share({title: 'Замовлення SushiЮ', text: t}); return; }
+      await navigator.clipboard.writeText(t);
+      $('#hint').textContent = 'Чек скопійовано — вставте його в будь-який месенджер.';
+      $('#hint').style.color = 'var(--ok)';
+    } catch (err) { /* користувач скасував — нічого не робимо */ }
+  });
 
   applyPoint();
   if (!pointChosen() && $('#pick')) openPick();

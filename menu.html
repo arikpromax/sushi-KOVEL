@@ -26,6 +26,7 @@
   <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-tt" viewBox="0 0 24 24"><path d="M14.4 3.2v10.9a3.6 3.6 0 1 1-3.2-3.6"/><path d="M14.4 3.2a5 5 0 0 0 4.9 4.3"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 3.6v10.8"/><path d="m8.4 7.2 3.6-3.6 3.6 3.6"/><path d="M7.4 10.6H5.6A1.6 1.6 0 0 0 4 12.2v7.2a1.6 1.6 0 0 0 1.6 1.6h12.8a1.6 1.6 0 0 0 1.6-1.6v-7.2a1.6 1.6 0 0 0-1.6-1.6h-1.8"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.6"/><path d="M3.5 13.5h17M12 9v11.5"/><path d="M12 9S9.6 4.5 7.4 5.6 9.6 9 12 9Zm0 0s2.4-4.5 4.6-3.4S14.4 9 12 9Z"/></symbol>
 </svg>
@@ -184,22 +185,37 @@
 <div class="scrim" id="scrim"></div>
 <aside class="cart" id="cart" aria-label="Моє замовлення">
   <div class="cart-h">
-    <h3>Замовлення</h3>
-    <button class="x" id="cartClose" aria-label="Закрити">&#10005;</button>
+    <div class="cart-in">
+      <button class="x" id="checkBack" hidden aria-label="Назад"><svg class="ico back-i"><use href="#i-arrow"/></svg></button>
+      <h3 id="cartTitle">Замовлення</h3>
+      <button class="x" id="cartClose" aria-label="Закрити">&#10005;</button>
+    </div>
   </div>
-  <div class="cart-body" id="cartBody"></div>
+
+  <div class="cart-scroll">
+    <div class="cart-in">
+      <div class="cart-body" id="cartBody"></div>
+      <div class="check" id="checkPaper" hidden></div>
+    </div>
+  </div>
+
   <div class="cart-f">
-    <div class="f-row"><span>Позицій</span><span id="fCount">0</span></div>
-    <div class="f-row"><span>Сума</span><b id="fSub">0 ₴</b></div>
-    <div class="f-row"><span>Доставка <span data-pt="name">Ковель</span></span><b id="fDeliv">—</b></div>
-    <div class="f-total"><span>Разом</span><b id="fTotal">0 ₴</b></div>
-    <a class="btn btn-p" href="tel:+380671213366" data-pt-href="tel1">
-      <svg class="ico"><use href="#i-phone"/></svg> <span data-pt="tel1">067 121 33 66</span>
-    </a>
-    <a class="btn btn-g" href="tel:+380661213366" data-pt-href="tel2">
-      <svg class="ico"><use href="#i-phone"/></svg> <span data-pt="tel2">066 121 33 66</span>
-    </a>
-    <p class="hint" id="hint">Замовлення нікуди не відправляється — просто зателефонуйте й назвіть позиції зі списку.</p>
+    <div class="cart-in">
+      <div id="sumRows">
+        <div class="f-row"><span>Позицій</span><span id="fCount">0</span></div>
+        <div class="f-row"><span>Сума</span><b id="fSub">0 ₴</b></div>
+        <div class="f-row"><span>Доставка <span data-pt="name">Ковель</span></span><b id="fDeliv">—</b></div>
+        <div class="f-total"><span>Разом</span><b id="fTotal">0 ₴</b></div>
+      </div>
+      <button class="btn btn-p" id="toCheck">Далі <svg class="ico"><use href="#i-arrow"/></svg></button>
+      <div id="checkActions" hidden>
+        <a class="btn btn-p" href="tel:+380671213366" data-pt-href="tel1">
+          <svg class="ico"><use href="#i-phone"/></svg> <span data-pt="tel1">067 121 33 66</span>
+        </a>
+        <button class="btn btn-g" id="shareBtn"><svg class="ico"><use href="#i-share"/></svg> Поділитися</button>
+      </div>
+      <p class="hint" id="hint">Замовлення нікуди не відправляється — просто зателефонуйте й назвіть позиції.</p>
+    </div>
   </div>
 </aside>
 
