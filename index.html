@@ -55,9 +55,6 @@
     <button class="pt-pill" id="pointBtn">
       <svg class="ico"><use href="#i-pin"/></svg><b data-pt="name">Ковель</b><i>&#9660;</i>
     </button>
-    <a class="hdr-tel" href="tel:+380671213366" data-pt-href="tel1">
-      <svg class="ico"><use href="#i-phone"/></svg><span data-pt="tel1">067 121 33 66</span>
-    </a>
   </div>
 </header>
 
@@ -87,16 +84,9 @@
     <p class="lead">Роли для щасливих людей</p>
     <div class="hero-cta">
       <a href="menu.html" class="btn btn-p">Дивитись меню <svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="tel:+380671213366" data-pt-href="tel1" class="btn btn-g">
-        <svg class="ico"><use href="#i-phone"/></svg> <span data-pt="tel1">067 121 33 66</span>
-      </a>
+      <a href="#delivery" class="btn btn-g"><svg class="ico"><use href="#i-delivery"/></svg> Безкоштовна доставка від 1 000 ₴</a>
     </div>
-    <div class="hero-facts">
-      <div><svg class="ico"><use href="#i-pin"/></svg> <b data-pt="cityAddr">Ковель, вул. Незалежності, 86</b></div>
-      <div><svg class="ico"><use href="#i-clock"/></svg> Щодня <b data-pt="hours">11:00 – 21:00</b></div>
-      <div><svg class="ico"><use href="#i-delivery"/></svg> Доставка <b>безкоштовно від 1 000 ₴</b></div>
-      <div><svg class="ico"><use href="#i-gift"/></svg> <b>−10%</b> іменинникам</div>
-    </div>
+    <div class="bnr-grid rv" id="bnrGrid"></div>
   </div>
 </section>
 
@@ -107,7 +97,8 @@
   </div>
 </div>
 
-<!-- ===== ТОПОВІ ПОЗИЦІЇ ===== --><section class="pad" id="top-items">
+<!-- ===== ТОПОВІ ПОЗИЦІЇ ===== -->
+<section class="pad" id="top-items">
   <div class="wrap">
     <div class="sec-head rv">
       <div>
@@ -117,9 +108,7 @@
       <a href="menu.html" class="btn btn-g">Усе меню <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
 
-    <div class="chips rv" id="homeChips"></div>
-
-    <form class="search rv" id="homeSearch" style="margin-top:12px" action="menu.html">
+    <form class="search rv" id="homeSearch" action="menu.html">
       <svg class="ico"><use href="#i-search"/></svg>
       <input name="q" type="search" placeholder="Пошук: філадельфія, креветка, сет…" autocomplete="off">
     </form>
@@ -143,27 +132,20 @@
       <div class="icard">
         <svg class="ico"><use href="#i-menu"/></svg>
         <h3>1. Виберіть</h3>
-        <ul>
-          <li>Відкрийте меню й натискайте «Вибрати» на всьому, що сподобалось</li>
-          <li>Список і сума рахуються самі — нікуди не відправляються</li>
-        </ul>
+        <ul><li>Натискайте «Вибрати» в меню</li></ul>
       </div>
       <div class="icard">
         <svg class="ico"><use href="#i-phone"/></svg>
         <h3>2. Зателефонуйте</h3>
         <ul>
-          <li>Відкрийте кошик і натисніть кнопку дзвінка</li>
-          <li>Назвіть позиції зі списку — менеджер прийме замовлення</li>
+          <li>Кнопка дзвінка — у кошику</li>
           <li><a href="tel:+380671213366" data-pt-href="tel1"><span data-pt="tel1">067 121 33 66</span></a></li>
         </ul>
       </div>
       <div class="icard">
         <svg class="ico"><use href="#i-delivery"/></svg>
         <h3>3. Чекайте</h3>
-        <ul>
-          <li>Готуємо після підтвердження, тому роли їдуть свіжими</li>
-          <li>Або заберіть самі: <span data-pt="full">м. Ковель, вул. Незалежності, 86</span></li>
-        </ul>
+        <ul><li>Готуємо після підтвердження</li></ul>
       </div>
     </div>
   </div>
@@ -176,7 +158,6 @@
       <div>
         <p class="eyebrow">Як це працює</p>
         <h2 class="sec-h">Доставка<br>та оплата</h2>
-        <p class="sub">Умови показані для точки «<span data-pt="name">Ковель</span>».</p>
       </div>
     </div>
     <div class="info rv">
@@ -191,7 +172,6 @@
         <ul>
           <li><span data-pt="full">м. Ковель, вул. Незалежності, 86</span></li>
           <li>Щодня <span data-pt="hours">11:00 – 21:00</span></li>
-          <li>Краще попередити дзвінком, щоб замовлення чекало на вас</li>
           <li><a href="#" data-pt-href="map" target="_blank" rel="noopener">Показати на мапі</a></li>
         </ul>
       </div>
@@ -200,8 +180,7 @@
         <h3>Оплата</h3>
         <ul>
           <li>Готівкою при отриманні</li>
-          <li>Карткою — уточніть зручний спосіб у менеджера</li>
-          <li>Замовлення приймаємо за телефоном</li>
+          <li>Карткою — уточніть у менеджера</li>
         </ul>
       </div>
     </div>
@@ -215,7 +194,7 @@
       <div>
         <p class="eyebrow">Акція</p>
         <h3>Іменинникам знижка</h3>
-        <p>Святкуй свій День народження з SushiЮ. Знижка діє за день до дня народження, у сам день і наступного дня — просто скажіть про це менеджеру.</p>
+        <p>Діє за день до дня народження, у сам день і наступного. Скажіть менеджеру.</p>
       </div>
       <div class="big">−10%</div>
     </div>
@@ -315,9 +294,22 @@
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-/* чіпи ведуть на сторінку меню */
-$('#homeChips').innerHTML = CATS.filter(c => c.id !== 'all').map(c =>
-  '<a class="chip" href="menu.html?c=' + c.id + '">' + c.n + '</a>').join('');
+/* банери категорій */
+const BNR = [
+  {c:'set',  n:'Сети',        s:'Вигідно для компанії', cls:''},
+  {c:'phil', n:'Філадельфія', s:'Наш хіт',              cls:'is-accent'},
+  {c:'bake', n:'Запечені',    s:'Під сирною шапкою',    cls:''},
+  {c:'hand', n:'Хенд-роли',   s:'Новинка',              cls:'is-sand'}
+];
+$('#bnrGrid').innerHTML = BNR.map(b =>
+  '<a class="bnr ' + b.cls + '" href="menu.html?c=' + b.c + '">' +
+    '<svg class="bnr-art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="1.4" aria-hidden="true">' +
+      '<circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="8"/>' +
+    '</svg>' +
+    '<span class="bnr-t">' + b.n + '</span>' +
+    '<span class="bnr-s">' + b.s + '</span>' +
+    '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
+  '</a>').join('');
 
 /* топові позиції */
 const TOP = MENU.slice().sort((a, b) => b.pop - a.pop || b.p - a.p).slice(0, 8);
