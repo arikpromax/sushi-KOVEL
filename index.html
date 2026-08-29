@@ -25,7 +25,6 @@
   <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.6 8h12.8l1 12H4.6l1-12Z"/><path d="M9 8V6.4a3 3 0 0 1 6 0V8"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.4"/><path d="M3 10h18M6.5 14.6h3"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
-  <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-tt" viewBox="0 0 24 24"><path d="M14.4 3.2v10.9a3.6 3.6 0 1 1-3.2-3.6"/><path d="M14.4 3.2a5 5 0 0 0 4.9 4.3"/></symbol>
   <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 3.6v10.8"/><path d="m8.4 7.2 3.6-3.6 3.6 3.6"/><path d="M7.4 10.6H5.6A1.6 1.6 0 0 0 4 12.2v7.2a1.6 1.6 0 0 0 1.6 1.6h12.8a1.6 1.6 0 0 0 1.6-1.6v-7.2a1.6 1.6 0 0 0-1.6-1.6h-1.8"/></symbol>
@@ -99,7 +98,7 @@
 <section class="pad" id="top-items">
   <div class="wrap">
     <div class="sec-head rv">
-      <h2 class="sec-h">Позиції</h2>
+      <h2 class="sec-h">Меню</h2>
       <a href="menu.html" class="btn btn-g">Усе меню <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
 
@@ -307,13 +306,13 @@
 <script>
 /* банери категорій */
 const BNR = [
-  {c:'phil', n:'Філадельфія',  cls:'is-accent'},
-  {c:'prem', n:'Преміум роли', cls:''},
-  {c:'bake', n:'Запечені',     cls:''},
-  {c:'hand', n:'Хенд роли',    cls:'is-sand'}
+  {c:'phil', n:'Філадельфія'},
+  {c:'prem', n:'Преміум роли'},
+  {c:'bake', n:'Запечені'},
+  {c:'hand', n:'Хенд роли'}
 ];
 $('#bnrGrid').innerHTML = BNR.map(b =>
-  '<a class="bnr ' + b.cls + '" href="menu.html?c=' + b.c + '">' +
+  '<a class="bnr" href="menu.html?c=' + b.c + '">' +
     '<svg class="bnr-art" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="1.4" aria-hidden="true">' +
       '<circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="8"/>' +
     '</svg>' +
