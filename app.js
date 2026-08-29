@@ -161,12 +161,16 @@ function renderCart(){
   }
 
   $$('[data-qty]').forEach(el => {
-    const c = el.closest('.card');
+    const c = el.closest('.card, .prod-add');
     el.textContent = cart[el.dataset.qty] || 0;
     if (c) c.classList.toggle('in', !!cart[el.dataset.qty]);
   });
   saveCart();
-  if (onCheck){ if (!ids.length) showCheck(false); else renderCheck(); }
+
+  const ch = $('#check');
+  if (ch && ch.classList.contains('on')){
+    if (!ids.length) closeSheet('#check'); else renderCheck();
+  }
 }
 
 /* ---------- чек ---------- */
@@ -201,22 +205,42 @@ function receiptText(){
     '\nРазом: ' + money(s.total + d.price);
 }
 
-let onCheck = false;
-function showCheck(on){
-  onCheck = on && cartLines().length > 0;
-  if (onCheck) renderCheck();
-  $('#cartBody').hidden      = onCheck;
-  $('#checkPaper').hidden    = !onCheck;
-  $('#sumRows').hidden       = onCheck;
-  $('#toCheck').hidden       = onCheck;
-  $('#checkActions').hidden  = !onCheck;
-  $('#checkBack').hidden     = !onCheck;
-  $('#cartTitle').textContent = onCheck ? 'Ваш чек' : 'Замовлення';
-  $('#hint').textContent = onCheck
-    ? 'Замовлення нікуди не відправляється — назвіть позиції з чека по телефону.'
-    : 'Замовлення нікуди не відправляється — просто зателефонуйте й назвіть позиції.';
-  $('#hint').style.color = '';
-  $('.cart-scroll').scrollTop = 0;
+/* ---------- сторінка позиції ---------- */
+function openProd(id){
+  const m = byId(id);
+  if (!m) return;
+  const cat = (CATS.filter(c => c.id === m.c)[0] || {}).n || 'Позиція';
+  const also = MENU.filter(x => x.c === m.c && x.id !== m.id)
+    .concat(MENU.filter(x => x.c !== m.c).slice().sort((a, b) => b.pop - a.pop))
+    .slice(0, 6);
+
+  $('#prodCat').textContent = cat;
+  $('#prodBody').innerHTML =
+    '<div class="prod-ph">' + (m.b ? '<span class="badge' + (m.b === 'Хіт' || m.b === 'Топ' ? ' hit' : '') + '">' + m.b + '</span>' : '') + '</div>' +
+    '<h2 class="prod-n">' + m.n + '</h2>' +
+    '<p class="prod-ing">' + (m.ing || '') + '</p>' +
+    '<div class="prod-meta"><span class="wt">' + (m.wt || '') + '</span>' +
+      '<span class="price"><i>₴</i>' + m.p + '</span></div>' +
+    '<h3 class="also-h">Спробуйте також</h3>' +
+    '<div class="rail">' + also.map(cardHTML).join('') + '</div>';
+
+  const qty = cart[m.id] || 0;
+  $('#prodFoot').innerHTML =
+    '<div class="prod-add' + (qty ? ' in' : '') + '">' +
+      '<button class="add" data-add="' + m.id + '">Вибрати · ' + m.p + ' ₴</button>' +
+      '<div class="step"><button data-dec="' + m.id + '">&minus;</button>' +
+      '<b data-qty="' + m.id + '">' + qty + '</b>' +
+      '<button data-inc="' + m.id + '">+</button></div>' +
+    '</div>';
+
+  $('#prod').querySelector('.sheet-body').scrollTop = 0;
+  $('#prod').classList.add('on');
+  lockScroll();
+}
+
+function lockScroll(){
+  const open = ['#cart', '#check', '#prod'].some(s => $(s) && $(s).classList.contains('on'));
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 
 /* ---------- поява при скролі ---------- */
@@ -225,7 +249,7 @@ const io = new IntersectionObserver(en => {
 }, {rootMargin:'0px 0px -6% 0px', threshold:.05});
 function revealScan(){
   $$('.rv:not(.on)').forEach(el => io.observe(el));
-  $$('.card:not(.rv)').forEach((el, i) => {
+  $$('.card:not(.rv)').filter(el => !el.closest('.sheet')).forEach((el, i) => {
     el.classList.add('rv');
     el.style.transitionDelay = Math.min(i, 8) * 45 + 'ms';
     io.observe(el);
@@ -244,11 +268,23 @@ document.addEventListener('click', e => {
     cart[id] = Math.max(0, (cart[id] || 0) - 1);
     if (!cart[id]) delete cart[id];
     renderCart();
+    return;
   }
+  /* клік по картці — відкрити позицію на весь екран */
+  const card = e.target.closest('.card[data-id]');
+  if (card) openProd(card.dataset.id);
 });
 
-const openCart  = () => { showCheck(false); $('#cart').classList.add('on');    $('#scrim').classList.add('on');    document.body.style.overflow = 'hidden'; };
-const closeCart = () => { $('#cart').classList.remove('on'); $('#scrim').classList.remove('on'); document.body.style.overflow = ''; };
+const openCart  = () => { $('#cart').classList.add('on');    $('#scrim').classList.add('on');    lockScroll(); };
+const closeCart = () => { $('#cart').classList.remove('on'); $('#scrim').classList.remove('on'); lockScroll(); };
+const openCheck = () => {
+  if (!cartLines().length) return;
+  renderCheck();
+  $('#check').querySelector('.sheet-body').scrollTop = 0;
+  $('#check').classList.add('on');
+  lockScroll();
+};
+const closeSheet = sel => { $(sel).classList.remove('on'); lockScroll(); };
 
 /* ---------- модалка вибору точки ---------- */
 const openPick  = () => { $('#pick').classList.add('on'); document.body.style.overflow = 'hidden'; };
@@ -292,12 +328,17 @@ function initShell(){
   $('#scrim').addEventListener('click', closeCart);
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    if (onCheck) showCheck(false); else closeCart();
+    if ($('#prod').classList.contains('on')) closeSheet('#prod');
+    else if ($('#check').classList.contains('on')) closeSheet('#check');
+    else closeCart();
     closePick();
   });
 
-  $('#toCheck').addEventListener('click', () => { if (cartLines().length) showCheck(true); });
-  $('#checkBack').addEventListener('click', () => showCheck(false));
+  $('#toCheck').addEventListener('click', openCheck);
+  $('#checkBack').addEventListener('click', () => closeSheet('#check'));
+  $('#checkClose').addEventListener('click', () => { closeSheet('#check'); closeCart(); });
+  $('#prodBack').addEventListener('click', () => closeSheet('#prod'));
+  $('#prodClose').addEventListener('click', () => closeSheet('#prod'));
 
   $('#shareBtn').addEventListener('click', async () => {
     const t = receiptText();

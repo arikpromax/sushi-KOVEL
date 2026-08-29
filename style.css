@@ -362,19 +362,33 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .scrim{position:fixed;inset:0;background:rgba(8,9,10,.72);backdrop-filter:blur(3px);z-index:90;opacity:0;visibility:hidden;transition:.32s}
 .scrim.on{opacity:1;visibility:visible}
 .cart{
-  position:fixed;inset:0;z-index:95;background:var(--bg-2);display:flex;flex-direction:column;
-  transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+  position:fixed;top:0;right:0;bottom:0;width:min(100%,432px);z-index:95;background:var(--bg-2);
+  border-left:1px solid var(--line);display:flex;flex-direction:column;
+  transform:translateX(102%);transition:transform .38s cubic-bezier(.4,0,.2,1);
 }
 .cart.on{transform:none}
-.cart-in{width:min(100% - 32px, 640px);margin-inline:auto}
-.cart-h{padding:18px 0;border-bottom:1px solid var(--line);flex:none}
-.cart-h .cart-in{display:flex;align-items:center;gap:14px}
-.cart-h h3{flex:1;font-size:25px;letter-spacing:.14em;text-transform:uppercase}
-.cart-h .back-i{transform:rotate(180deg)}
-.cart-scroll{flex:1;overflow-y:auto;padding:6px 0 20px}
+.cart-h{display:flex;align-items:center;justify-content:space-between;padding:21px 22px;border-bottom:1px solid var(--line);flex:none}
+.cart-h h3{font-size:25px;letter-spacing:.14em;text-transform:uppercase}
+
+/* повноекранні аркуші: чек і позиція */
+.cart-in{width:min(100% - 32px, 620px);margin-inline:auto}
+.sheet{
+  position:fixed;inset:0;z-index:96;background:var(--bg-2);display:flex;flex-direction:column;
+  transform:translateY(100%);visibility:hidden;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),visibility .4s;
+}
+.sheet.on{transform:none;visibility:visible}
+.sheet-h{flex:none;padding:17px 0;border-bottom:1px solid var(--line)}
+.sheet-h .cart-in{display:flex;align-items:center;gap:14px}
+.sheet-h h3{flex:1;min-width:0;font-size:23px;letter-spacing:.14em;text-transform:uppercase}
+.sheet .back-i{transform:rotate(180deg)}
+.sheet-body{flex:1;overflow-y:auto;padding:18px 0 28px}
+.sheet-f{flex:none;padding:17px 0 calc(21px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--panel)}
+.sheet-f .btn+.btn{margin-top:9px}
+.sheet-f .btn{width:100%}
 .x{background:none;border:1px solid var(--line-2);border-radius:50%;width:38px;height:38px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px}
 .x:hover{border-color:var(--accent);color:var(--accent)}
-.cart-body{padding:12px 0}
+.cart-body{flex:1;overflow-y:auto;padding:16px 22px}
 .ci{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
 .ci-ph{width:62px;height:62px;border-radius:var(--r-s);overflow:hidden;flex:none;border:1px solid var(--line);background:linear-gradient(150deg,#1B1D1F,#131415)}
 .ci-ph img{width:100%;height:100%;object-fit:cover}
@@ -389,7 +403,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .cart-empty{text-align:center;padding:56px 10px;color:var(--ink-3)}
 .cart-empty .ico{font-size:44px;color:var(--line-2);margin:0 auto 14px}
 .cart-empty .btn{margin-top:18px}
-.cart-f{flex:none;padding:18px 0 calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--panel)}
+.cart-f{flex:none;padding:18px 22px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--panel)}
 .f-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
 .f-row b{color:var(--ink);font-weight:600}
 .f-row.free b{color:var(--ok)}
@@ -403,13 +417,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 
 /* ================= чек ================= */
 .check{
-  position:relative;margin:14px 0 8px;padding:28px 24px 34px;border-radius:14px 14px 4px 4px;
+  position:relative;margin:6px 0;padding:28px 24px 30px;border-radius:14px;
   background:#F4EFE5;color:#211E19;box-shadow:0 26px 60px -30px rgba(0,0,0,.9);
-}
-.check::after{
-  content:'';position:absolute;left:0;right:0;bottom:-11px;height:12px;background:#F4EFE5;
-  -webkit-mask:radial-gradient(9px at 9px 0,transparent 98%,#000) repeat-x 0 0/18px 12px;
-          mask:radial-gradient(9px at 9px 0,transparent 98%,#000) repeat-x 0 0/18px 12px;
 }
 .check-top{text-align:center;padding-bottom:16px;border-bottom:1px dashed rgba(33,30,25,.32)}
 .check-top .n{font-family:'Sacramento',cursive;font-size:34px;line-height:1}
@@ -429,6 +438,27 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .check-total span{font:700 12px/1 'Manrope';letter-spacing:.18em;text-transform:uppercase}
 .check-total b{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500}
 .check-note{margin:16px 0 0;font-size:11.5px;line-height:1.55;color:rgba(33,30,25,.6);text-align:center}
+
+/* ================= сторінка позиції ================= */
+.prod-ph{
+  aspect-ratio:16/10;border-radius:16px;border:1px solid var(--line);
+  background:linear-gradient(150deg,#1B1D1F,#131415);position:relative;overflow:hidden;
+}
+.prod-ph .badge{top:14px;left:14px}
+.prod-n{margin:20px 0 0;font-size:clamp(26px,5.4vw,40px);line-height:1.08;letter-spacing:.04em}
+.prod-ing{margin:12px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.prod-meta{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.prod-meta .price{font-size:34px}
+.also-h{margin:34px 0 14px;font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.16em;text-transform:uppercase}
+.prod-add{display:flex;flex-direction:column}
+.prod-add .add{margin-top:0;padding:16px;font-size:12.5px;background:var(--accent);border-color:var(--accent);color:#fff}
+.prod-add .add:hover{background:var(--accent-d);border-color:var(--accent-d)}
+.prod-add .step{margin-top:0;padding:6px}
+.prod-add .step button{width:40px;height:40px;font-size:20px}
+.prod-add .step b{font-size:17px}
+.prod-add.in .add{display:none}
+.prod-add.in .step{display:flex}
+.card{cursor:pointer}
 
 /* ================= reveal ================= */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
