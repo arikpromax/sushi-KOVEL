@@ -61,7 +61,6 @@ const POINTS = [
 ];
 
 const CATS = [
-  {id:'all',  n:'Усі'},
   {id:'phil', n:'Філадельфія'},
   {id:'cal',  n:'Каліфорнія'},
   {id:'maki', n:'Макі'},

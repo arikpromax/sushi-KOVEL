@@ -341,8 +341,10 @@ function spyScroll(){
   let cur = 'top';
   spy.forEach(id => {
     const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= innerHeight * 0.34) cur = id;
+    if (el && el.getBoundingClientRect().top <= 140) cur = id;   /* трохи нижче шапки */
   });
+  /* підвал низький і його верх не встигає перетнути лінію — біля дна вмикаємо останній пункт */
+  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 80) cur = spy[spy.length - 1];
   $$('[data-sp]').forEach(a => a.classList.toggle('act', a.dataset.sp === cur));
 }
 
