@@ -104,11 +104,15 @@ Promise.all([
     pts.forEach(p => POINTS.push(p));
   }
 
-  /* ---------- фото сайту ---------- */
-  const heroPh = of('site_photos').filter(i => str((i.extra || {}).slot) === 'hero')[0];
-  const heroEl = document.getElementById('heroBg');
-  if (heroEl && heroPh && str(heroPh.image_url))
-    heroEl.style.setProperty('--ph', "url('" + str(heroPh.image_url) + "')");
+  /* ---------- фото плиток на головній ---------- */
+  /* слот bnr-phil → розділ phil; фото лягає на плитку під заголовком */
+  of('site_photos').forEach(i => {
+    const slot = str((i.extra || {}).slot);
+    const url  = str(i.image_url);
+    if (slot.indexOf('bnr-') !== 0 || !url) return;
+    const cat = CATS.filter(c => c.id === slot.slice(4))[0];
+    if (cat) cat.img = url;
+  });
 
   /* ---------- дрібні тексти ---------- */
   const lead = document.querySelector('.hero .lead');
