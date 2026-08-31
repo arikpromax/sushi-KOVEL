@@ -258,15 +258,24 @@ const BNR = [
   {c:'bake', n:'Запечені'},
   {c:'hand', n:'Хенд роли'}
 ];
-$('#bnrGrid').innerHTML = BNR.map(b =>
-  '<a class="bnr" href="menu.html?c=' + b.c + '">' +
-    '<span class="bnr-t">' + b.n + '</span>' +
-    '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
-  '</a>').join('');
+/* перемальовується і після того, як прийдуть дані з адмінки */
+function refreshMenu(){
+  $('#bnrGrid').innerHTML = BNR
+    .map(b => {
+      const cat = CATS.filter(c => c.id === b.c)[0];
+      return cat ? {c: b.c, n: b.n || cat.n} : null;
+    })
+    .filter(Boolean)
+    .map(b =>
+      '<a class="bnr" href="menu.html?c=' + b.c + '">' +
+        '<span class="bnr-t">' + b.n + '</span>' +
+        '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
+      '</a>').join('');
 
-/* сети */
-const TOP = MENU.filter(m => m.c === 'set').sort((a, b) => b.pop - a.pop || a.p - b.p);
-$('#rail').innerHTML = TOP.map(cardHTML).join('');
+  const sets = MENU.filter(m => m.c === 'set').sort((a, b) => b.pop - a.pop || a.p - b.p);
+  $('#rail').innerHTML = sets.map(cardHTML).join('');
+}
+refreshMenu();
 
 /* пошук з головної веде на сторінку меню */
 $('#homeSearch').addEventListener('submit', e => {
@@ -293,5 +302,6 @@ function spyScroll(){
 
 initShell();
 </script>
+<script src="db.js?v=1"></script>
 </body>
 </html>

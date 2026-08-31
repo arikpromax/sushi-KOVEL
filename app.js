@@ -304,6 +304,19 @@ const openCheck = () => {
 };
 const closeSheet = sel => { $(sel).classList.remove('on'); lockScroll(); };
 
+/* плитки вибору закладу — перебудовуються і після відповіді адмінки */
+function renderPickTiles(){
+  const pg = $('#pickGrid');
+  if (!pg) return;
+  pg.innerHTML = POINTS.map(p =>
+    '<button class="pt-tile" data-point-pick="' + p.id + '">' +
+      '<span class="pt-city">' + p.n + '</span>' +
+      '<span class="pt-addr">' + p.addr + '</span>' +
+      '<span class="pt-hours">щодня ' + p.hours + '</span>' +
+    '</button>').join('');
+  $$('[data-point-pick]').forEach(el => el.classList.toggle('on', el.dataset.pointPick === pointId));
+}
+
 /* ---------- модалка вибору точки ---------- */
 const openPick  = () => { $('#pick').classList.add('on'); document.body.style.overflow = 'hidden'; };
 const closePick = () => { $('#pick').classList.remove('on'); document.body.style.overflow = ''; };
@@ -311,14 +324,7 @@ const closePick = () => { $('#pick').classList.remove('on'); document.body.style
 function initShell(){
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* плитки вибору точки — і в модалці, і в секції «Наші заклади» */
-  const tilesHTML = POINTS.map(p =>
-    '<button class="pt-tile" data-point-pick="' + p.id + '">' +
-      '<span class="pt-city">' + p.n + '</span>' +
-      '<span class="pt-addr">' + p.addr + '</span>' +
-      '<span class="pt-hours">щодня ' + p.hours + '</span>' +
-    '</button>').join('');
-  const pg = $('#pickGrid'); if (pg) pg.innerHTML = tilesHTML;
+  renderPickTiles();
 
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-point-pick]');

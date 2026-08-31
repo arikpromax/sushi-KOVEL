@@ -215,8 +215,13 @@
 const params = new URLSearchParams(location.search);
 let q = params.get('q') || '';
 
-$('#chips').innerHTML = CATS.map(c =>
-  '<button class="chip" data-c="' + c.id + '">' + c.n + '</button>').join('');
+/* перемальовується і після того, як прийдуть дані з адмінки */
+function refreshMenu(){
+  $('#chips').innerHTML = CATS.map(c =>
+    '<button class="chip" data-c="' + c.id + '">' + c.n + '</button>').join('');
+  renderGrid();
+}
+refreshMenu();
 $('#q').value = q;
 $('#searchBox').classList.toggle('has', !!q);
 
@@ -300,12 +305,12 @@ $('#qGo').addEventListener('click', () => {
 });
 $('#pointBtnFtr').addEventListener('click', openPick);
 
-renderGrid();
 initShell();
 
 /* прийшли з банера на головній — прокрутити до потрібного розділу */
 const wantCat = params.get('c');
 if (wantCat && !q) setTimeout(() => goCat(wantCat), 120);
 </script>
+<script src="db.js?v=1"></script>
 </body>
 </html>
