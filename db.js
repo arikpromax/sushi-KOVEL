@@ -48,7 +48,8 @@ Promise.all([
   }
 
   /* ---------- страви ---------- */
-  const menu = of('menu').map((i, k) => {
+  const rows = of('menu');
+  const menu = rows.map((i, k) => {
     const e = i.extra || {};
     const m = {
       id:  'db' + i.id,
@@ -56,7 +57,8 @@ Promise.all([
       n:   str(i.title),
       p:   num(i.price),
       ing: str(e.d),
-      pop: e.pos === '' || e.pos == null ? 0 : num(e.pos)
+      /* порядок — той, у якому картки стоять в адмінці (перетягуванням) */
+      pop: rows.length - k
     };
     if (e.neu === true || e.neu === 'true') m.b = 'Новинка';
     if (str(i.image_url)) m.img = str(i.image_url);
