@@ -480,7 +480,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 /* ================= сторінка позиції ================= */
 .prod-ph{
   /* квадрат: адмінка віддає фото 800×800, тож нічого не обрізається */
-  aspect-ratio:1/1;border-radius:16px;border:1px solid var(--line);
+  aspect-ratio:1/1;width:min(82%,420px);margin-inline:auto;
+  border-radius:16px;border:1px solid var(--line);
   background:linear-gradient(150deg,#1B1D1F,#131415);position:relative;overflow:hidden;
 }
 .prod-ph .badge{top:14px;left:14px}
