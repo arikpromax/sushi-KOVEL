@@ -146,6 +146,17 @@ function renderCart(){
           '<button data-inc="' + id + '">+</button>' +
           '<span class="ci-price">' + money(m.p * cart[id]) + '</span></div></div></div>';
       }).join('');
+
+      /* швидке додавання соусів, імбиру тощо просто з кошика */
+      const extras = MENU.filter(m => m.c === 'add');
+      if (extras.length){
+        body.innerHTML += '<div class="xtra"><h4>Додати до замовлення</h4><div class="xtra-list">' +
+          extras.map(m => {
+            const q = cart[m.id] || 0;
+            return '<button class="xtra-b' + (q ? ' on' : '') + '" data-add="' + m.id + '">' +
+              m.n + ' <b>' + m.p + ' ₴</b><i>' + (q || '+') + '</i></button>';
+          }).join('') + '</div></div>';
+      }
     }
   }
 

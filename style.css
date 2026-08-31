@@ -404,6 +404,22 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .ci-r button:hover{border-color:var(--accent);color:var(--accent)}
 .ci-r b{font-size:13px;min-width:18px;text-align:center}
 .ci-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;white-space:nowrap}
+/* швидке додавання додатків у кошику */
+.xtra{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.xtra h4{margin:0 0 11px;font:600 10.5px/1 'Manrope';letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+.xtra-list{display:flex;flex-wrap:wrap;gap:8px}
+.xtra-b{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 8px 8px 13px;border-radius:999px;
+  border:1px solid var(--line-2);background:none;cursor:pointer;font:500 12.5px/1 'Manrope';transition:.22s;
+}
+.xtra-b b{font-weight:700;color:var(--ink-2)}
+.xtra-b i{
+  font-style:normal;min-width:20px;height:20px;padding:0 5px;border-radius:999px;
+  background:var(--accent);color:#fff;font:700 11px/20px 'Manrope';text-align:center;
+}
+.xtra-b:hover{border-color:var(--hover)}
+.xtra-b:hover i{background:var(--hover)}
+.xtra-b.on{border-color:var(--accent);background:var(--accent-soft)}
 .cart-empty{text-align:center;padding:56px 10px;color:var(--ink-3)}
 .cart-empty .ico{font-size:44px;color:var(--line-2);margin:0 auto 14px}
 .cart-empty .btn{margin-top:18px}
