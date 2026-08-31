@@ -110,7 +110,9 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 .hero{position:relative;min-height:min(94svh,800px);display:flex;align-items:flex-end;padding:calc(var(--hdr) + 46px) 0 30px;overflow:hidden}
 .hero .bnr-grid{margin-top:clamp(28px,4vw,46px)}
 .hero-bg{position:absolute;inset:-6% -4%;z-index:0;
-  --ph:url('photos/hero-bg.webp');            /* фон головного блоку; замінюється з адмінки */
+  /* Фон головного блоку. Покладіть файл photos/hero-bg.jpg — і він
+     зʼявиться сам. Поки файлу немає, лишається просто градієнт. */
+  --ph:url('photos/hero-bg.jpg');
   background:
   radial-gradient(620px 480px at 22% 78%, rgba(217,199,174,.09), transparent 64%),
   linear-gradient(160deg,#17191B 0%,#0F1011 62%)}
