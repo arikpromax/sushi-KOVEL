@@ -239,7 +239,8 @@ function openProd(id){
 
   $('#prodCat').textContent = cat;
   $('#prodBody').innerHTML =
-    '<div class="prod-ph">' + (m.b ? '<span class="badge">' + m.b + '</span>' : '') + '</div>' +
+    '<div class="prod-ph">' + (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
+      (m.img ? '<img src="' + m.img + '" alt="' + m.n + '">' : '') + '</div>' +
     '<h2 class="prod-n">' + m.n + '</h2>' +
     '<p class="prod-ing">' + (m.ing || '') + '</p>' +
     '<div class="prod-meta"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
