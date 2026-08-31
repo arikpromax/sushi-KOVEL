@@ -124,8 +124,7 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 /* тепле світло + затемнення, щоб текст читався поверх фактури */
 .hero-bg::after{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(760px 520px at 74% 26%, rgba(226,82,58,.20), transparent 66%),
-             linear-gradient(180deg,rgba(15,16,17,.30) 0%,transparent 30%,transparent 62%,rgba(15,16,17,.42) 88%,var(--bg) 100%),
+  background:linear-gradient(180deg,rgba(15,16,17,.30) 0%,transparent 30%,transparent 62%,rgba(15,16,17,.42) 88%,var(--bg) 100%),
              linear-gradient(90deg,rgba(15,16,17,.46),transparent 62%);
 }
 .hero .wrap{position:relative;z-index:1}
