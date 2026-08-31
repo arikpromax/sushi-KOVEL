@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Marck+Script&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -41,7 +41,6 @@
 </a>
     <nav class="nav">
       <a href="menu.html">Меню</a>
-      <a href="#how" data-sp="how">Як замовити</a>
       <a href="#delivery" data-sp="delivery">Доставка</a>
       <a href="#contacts" data-sp="contacts">Контакти</a>
     </nav>
@@ -96,38 +95,6 @@
     <div class="rail" id="rail" style="margin-top:24px"></div>
 
     <a href="menu.html" class="btn btn-p btn-wide">Перейти до меню <svg class="ico"><use href="#i-arrow"/></svg></a>
-  </div>
-</section>
-
-<!-- ===== ЯК ЗАМОВИТИ ===== -->
-<section class="pad" id="how" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <p class="eyebrow">Три кроки</p>
-        <h2 class="sec-h">Як замовити</h2>
-      </div>
-    </div>
-    <div class="info rv">
-      <div class="icard">
-        <svg class="ico"><use href="#i-menu"/></svg>
-        <h3>1. Виберіть</h3>
-        <ul><li>Натискайте «Вибрати» в меню</li></ul>
-      </div>
-      <div class="icard">
-        <svg class="ico"><use href="#i-phone"/></svg>
-        <h3>2. Зателефонуйте</h3>
-        <ul>
-          <li>Кнопка дзвінка — у кошику</li>
-          <li><a href="tel:+380671213366" data-pt-href="tel1"><span data-pt="tel1">067 121 33 66</span></a></li>
-        </ul>
-      </div>
-      <div class="icard">
-        <svg class="ico"><use href="#i-delivery"/></svg>
-        <h3>3. Чекайте</h3>
-        <ul><li>Готуємо після підтвердження</li></ul>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -284,8 +251,8 @@
   <div class="sheet-f"><div class="cart-in" id="prodFoot"></div></div>
 </div>
 
-<script src="data.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="data.js?v=4"></script>
+<script src="app.js?v=4"></script>
 <script>
 /* банери категорій */
 const BNR = [
@@ -315,7 +282,7 @@ $('#homeSearch').addEventListener('submit', e => {
 $('#pointBtnFtr').addEventListener('click', openPick);
 
 /* scroll-spy */
-const spy = ['top','how','delivery','contacts'];
+const spy = ['top','delivery','contacts'];
 function spyScroll(){
   let cur = 'top';
   spy.forEach(id => {
