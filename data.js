@@ -56,6 +56,8 @@ const POINTS = [
   }
 ];
 
+/* Розділи меню. Необовʼязкове поле img — фото для банера на головній
+   (photos/…): {id:'phil', n:'Філадельфія', img:'photos/philadelphia-chuka.jpg'} */
 const CATS = [
   {id:'set',  n:'Сети'},
   {id:'phil', n:'Філадельфія'},

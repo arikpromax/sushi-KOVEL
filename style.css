@@ -109,14 +109,23 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 /* ================= hero ================= */
 .hero{position:relative;min-height:min(94svh,800px);display:flex;align-items:flex-end;padding:calc(var(--hdr) + 46px) 0 30px;overflow:hidden}
 .hero .bnr-grid{margin-top:clamp(28px,4vw,46px)}
-.hero-bg{position:absolute;inset:-6% -4%;z-index:0;background:
-  radial-gradient(760px 520px at 74% 26%, rgba(226,82,58,.20), transparent 66%),
+.hero-bg{position:absolute;inset:-6% -4%;z-index:0;
+  --ph:url('photos/hero-bg.webp');            /* фон головного блоку; замінюється з адмінки */
+  background:
   radial-gradient(620px 480px at 22% 78%, rgba(217,199,174,.09), transparent 64%),
   linear-gradient(160deg,#17191B 0%,#0F1011 62%)}
+/* фактура */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:var(--ph) center/cover no-repeat;
+  opacity:.34;filter:grayscale(1);
+}
+/* тепле світло + затемнення, щоб текст читався поверх фактури */
 .hero-bg::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(15,16,17,.60) 0%,rgba(15,16,17,.12) 32%,rgba(15,16,17,.72) 76%,var(--bg) 100%),
-             linear-gradient(90deg,rgba(15,16,17,.72),transparent 66%);
+  background:radial-gradient(760px 520px at 74% 26%, rgba(226,82,58,.24), transparent 66%),
+             linear-gradient(180deg,rgba(15,16,17,.62) 0%,rgba(15,16,17,.26) 34%,rgba(15,16,17,.74) 76%,var(--bg) 100%),
+             linear-gradient(90deg,rgba(15,16,17,.74),transparent 66%);
 }
 .hero .wrap{position:relative;z-index:1}
 .hero h1{
@@ -159,6 +168,13 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
   transition:transform .32s ease,border-color .32s ease,box-shadow .32s ease;
 }
 .bnr:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:var(--shadow)}
+/* фото банера — додається в адмінці; без нього лишається темна плашка */
+.bnr-ph{position:absolute;inset:0;background:center/cover no-repeat;transition:transform .6s ease}
+.bnr-ph::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(165deg,rgba(13,15,18,.88) 0%,rgba(13,15,18,.52) 54%,rgba(13,15,18,.8) 100%);
+}
+.bnr:hover .bnr-ph{transform:scale(1.06)}
 .bnr-t{position:relative;font-family:'Playfair Display',serif;font-size:27px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
 .bnr-go{
   position:relative;margin-top:auto;display:flex;align-items:center;justify-content:center;

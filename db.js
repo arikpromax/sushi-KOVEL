@@ -21,7 +21,7 @@ const tel  = d => { const x = str(d).replace(/\D/g, ''); return x ? '+38' + x.re
 
 Promise.all([
   fetch(DB_URL + '/items?site_id=eq.' + SITE_ID +
-        '&collection=in.(menu,cats,points)&order=sort_order' +
+        '&collection=in.(menu,cats,points,site_photos)&order=sort_order' +
         '&select=id,collection,title,price,image_url,extra,sort_order', {headers:{apikey:DB_KEY}}),
   fetch(DB_URL + '/texts?site_id=eq.' + SITE_ID + '&select=key,value', {headers:{apikey:DB_KEY}})
 ])
@@ -36,7 +36,11 @@ Promise.all([
 
   /* ---------- розділи ---------- */
   const cats = of('cats')
-    .map(i => ({id: str((i.extra || {}).catkey), n: str(i.title)}))
+    .map(i => {
+      const c = {id: str((i.extra || {}).catkey), n: str(i.title)};
+      if (str(i.image_url)) c.img = str(i.image_url);   /* фото для банера на головній */
+      return c;
+    })
     .filter(c => c.id && c.n);
   if (cats.length){
     CATS.length = 0;
@@ -99,6 +103,12 @@ Promise.all([
     POINTS.length = 0;
     pts.forEach(p => POINTS.push(p));
   }
+
+  /* ---------- фото сайту ---------- */
+  const heroPh = of('site_photos').filter(i => str((i.extra || {}).slot) === 'hero')[0];
+  const heroEl = document.getElementById('heroBg');
+  if (heroEl && heroPh && str(heroPh.image_url))
+    heroEl.style.setProperty('--ph', "url('" + str(heroPh.image_url) + "')");
 
   /* ---------- дрібні тексти ---------- */
   const lead = document.querySelector('.hero .lead');
