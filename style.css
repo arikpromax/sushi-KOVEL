@@ -130,7 +130,7 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 .hero .wrap{position:relative;z-index:1}
 .hero h1{
   font-size:clamp(30px,7vw,76px);line-height:.98;text-transform:uppercase;letter-spacing:.05em;
-  margin:18px 0 0;max-width:9.2em;color:var(--accent);
+  margin:18px 0 0;max-width:9.2em;
   text-shadow:0 2px 10px rgba(0,0,0,.55),0 18px 44px rgba(0,0,0,.6);
 }
 /* «Найсмачніша» — біле, з червоною рискою під словом */
