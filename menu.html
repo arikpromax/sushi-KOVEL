@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Marck+Script&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 
@@ -214,6 +214,10 @@
 <script>
 const params = new URLSearchParams(location.search);
 let q = params.get('q') || '';
+/* Оголошено тут, а не нижче біля spyScroll: renderGrid чіпає spyCat, а
+   перше малювання йде одразу — інакше «Cannot access before initialization»
+   обриває скрипт і чіпи з пошуком лишаються без обробників. */
+let spyCat = null;
 
 /* перемальовується і після того, як прийдуть дані з адмінки */
 function refreshMenu(){
@@ -254,7 +258,6 @@ function renderGrid(){
 }
 
 /* ---- активний чіп сам стрибає на розділ, який зараз перед очима ---- */
-let spyCat = null;
 function spyScroll(){
   if (q) return;
   const blocks = $$('.cat-block');
