@@ -9,10 +9,10 @@
   --ink:#F2EEE8;
   --ink-2:rgba(242,238,232,.66);
   --ink-3:rgba(242,238,232,.40);
-  --accent:#E2523A;
-  --accent-d:#BE3C25;
-  --hover:#FF5A1F;
-  --accent-soft:rgba(226,82,58,.13);
+  --accent:#B4121B;
+  --accent-d:#8A0D14;
+  --hover:#D4141F;
+  --accent-soft:rgba(180,18,27,.13);
   --sand:#D9C7AE;
   --ok:#8FB08A;
   --r:14px;
@@ -35,9 +35,9 @@ body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
   transform:translateZ(0);
   background:
-    radial-gradient(920px 620px at 12% -6%, rgba(226,82,58,.10), transparent 62%),
+    radial-gradient(920px 620px at 12% -6%, rgba(180,18,27,.10), transparent 62%),
     radial-gradient(760px 560px at 96% 12%, rgba(217,199,174,.06), transparent 60%),
-    radial-gradient(900px 700px at 50% 106%, rgba(226,82,58,.05), transparent 62%);
+    radial-gradient(900px 700px at 50% 106%, rgba(180,18,27,.05), transparent 62%);
 }
 body::after{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;
@@ -182,7 +182,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
   font-size:18px;transition:.28s ease;
 }
 .bnr:hover .bnr-go{background:var(--hover);border-color:var(--hover);color:#fff;transform:translateX(4px)}
-.bnr:hover{border-color:rgba(255,90,31,.45)}
+.bnr:hover{border-color:rgba(212,20,31,.45)}
 @media (max-width:560px){
   .bnr-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .bnr{min-height:126px;padding:15px 15px 13px;border-radius:16px}
@@ -271,7 +271,7 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .icard li b{color:var(--ink);font-weight:600}
 .icard a{color:var(--sand);border-bottom:1px solid rgba(217,199,174,.35)}
 
-.promo{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;padding:32px 34px;border:1px solid rgba(226,82,58,.34);border-radius:var(--r);background:linear-gradient(120deg,rgba(226,82,58,.16),rgba(26,28,30,.5) 58%)}
+.promo{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;padding:32px 34px;border:1px solid rgba(180,18,27,.34);border-radius:var(--r);background:linear-gradient(120deg,rgba(180,18,27,.16),rgba(26,28,30,.5) 58%)}
 .promo h3{font-size:clamp(24px,3.6vw,34px);letter-spacing:.1em;text-transform:uppercase}
 .promo p{margin:8px 0 0;color:var(--ink-2);font-size:14px;max-width:56ch}
 .promo .big{font-family:'Playfair Display',serif;font-size:clamp(56px,9vw,92px);line-height:.85;color:var(--accent);letter-spacing:-.02em}
@@ -295,8 +295,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 }
 .pt-tile::before{content:'';position:absolute;inset:9px;border:1px solid var(--line);transition:.3s ease;pointer-events:none}
 .pt-tile:hover{border-color:var(--accent);background:var(--panel-2);transform:translateY(-3px)}
-.pt-tile:hover::before{inset:6px;border-color:rgba(226,82,58,.4)}
-.pt-tile.on{border-color:var(--accent);background:linear-gradient(150deg,rgba(226,82,58,.20),var(--panel) 64%)}
+.pt-tile:hover::before{inset:6px;border-color:rgba(180,18,27,.4)}
+.pt-tile.on{border-color:var(--accent);background:linear-gradient(150deg,rgba(180,18,27,.20),var(--panel) 64%)}
 .pt-tile.on::after{
   content:'Обрано';position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:999px;
   background:var(--accent);color:#fff;font:700 8.5px/1 'Manrope';letter-spacing:.14em;text-transform:uppercase;
@@ -350,12 +350,12 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .bn-cart .bubble{
   position:relative;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:var(--accent);color:#fff;margin-top:-26px;border:0;
-  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 14px 28px -12px rgba(226,82,58,.85);
+  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 14px 28px -12px rgba(180,18,27,.85);
   transition:transform .26s ease,background .26s,box-shadow .26s;
 }
 .bn-cart:hover .bubble{
   transform:translateY(-3px);background:var(--hover);
-  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 18px 34px -12px rgba(226,82,58,1);
+  box-shadow:0 0 0 5px rgba(15,16,17,.7), 0 18px 34px -12px rgba(180,18,27,1);
 }
 .bn-cart .bubble .ico{font-size:23px}
 .bn-cart .cnt{
