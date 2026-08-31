@@ -120,8 +120,8 @@ h1,h2,h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;l
 }
 .hero .wrap{position:relative;z-index:1}
 .hero h1{
-  font-size:clamp(32px,10vw,104px);line-height:.94;text-transform:uppercase;letter-spacing:.05em;
-  margin:18px 0 0;text-shadow:0 18px 44px rgba(0,0,0,.6);
+  font-size:clamp(30px,7vw,76px);line-height:.98;text-transform:uppercase;letter-spacing:.05em;
+  margin:18px 0 0;max-width:9.2em;text-shadow:0 18px 44px rgba(0,0,0,.6);
 }
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .lead{
