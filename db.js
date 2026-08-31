@@ -67,6 +67,17 @@ Promise.all([
   if (menu.length){
     MENU.length = 0;
     menu.forEach(m => MENU.push(m));
+
+    /* У кошику могли лишитись позиції зі старого меню — їхні номери вже
+       нічому не відповідають. Прибираємо, інакше лічильник блимав би
+       на кожному оновленні: спершу рахує старе, потім бачить, що його нема. */
+    if (typeof cart === 'object' && cart){
+      let changed = false;
+      Object.keys(cart).forEach(id => {
+        if (!MENU.filter(m => m.id === id)[0]){ delete cart[id]; changed = true; }
+      });
+      if (changed && typeof saveCart === 'function') saveCart();
+    }
   }
 
   /* ---------- заклади ---------- */
