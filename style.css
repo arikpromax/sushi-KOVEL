@@ -331,6 +331,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .ftr a:hover{color:var(--accent)}
 .ftr .tel-big{font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);letter-spacing:.05em;margin-bottom:5px}
 .ftr-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:21px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+/* під рядком з ©, тим самим шрифтом і кольором, що й він */
+.ftr .ftr-note{margin:16px 0 0;font-size:12px;line-height:1.65;color:var(--ink-3);max-width:92ch}
 .socs{display:flex;gap:10px;margin-top:15px}
 .socs a{width:42px;height:42px;border:1px solid var(--line-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px}
 .socs a:hover{border-color:var(--accent);color:var(--accent)}
