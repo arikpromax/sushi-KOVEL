@@ -105,15 +105,14 @@ function cartSum(){
   cartLines().forEach(id => { const m = byId(id); total += m.p * cart[id]; count += cart[id]; });
   return {total: total, count: count};
 }
-/* Пакування: сет — 10 ₴, будь-яка інша позиція — 5 ₴ за штуку. */
-const PACK_SET = 10, PACK_ONE = 5;
+/* Пакування — одне на все замовлення, не на кожну позицію:
+   10 ₴ звичайно, і 5 ₴, коли беруть одну-єдину позицію без сета. */
+const PACK_BIG = 10, PACK_ONE = 5;
 function packSum(){
-  let sum = 0;
-  cartLines().forEach(id => {
-    const m = byId(id);
-    sum += (m.c === 'set' ? PACK_SET : PACK_ONE) * cart[id];
-  });
-  return sum;
+  const ids = cartLines();
+  if (!ids.length) return 0;
+  const hasSet = ids.some(id => byId(id).c === 'set');
+  return (hasSet || cartSum().count > 1) ? PACK_BIG : PACK_ONE;
 }
 
 function deliveryFor(total){
