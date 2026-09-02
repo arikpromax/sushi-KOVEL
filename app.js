@@ -147,7 +147,9 @@ function renderCart(){
     } else {
       body.innerHTML = ids.map(id => {
         const m = byId(id);
-        return '<div class="ci"><div class="ci-ph">' + (m.img ? '<img src="' + m.img + '" alt="">' : '') + '</div>' +
+        /* без фото порожню плашку не малюємо — рядок стає компактнішим */
+        return '<div class="ci">' +
+          (m.img ? '<div class="ci-ph"><img src="' + m.img + '" alt=""></div>' : '') +
           '<div class="ci-b"><h4>' + m.n + '</h4>' +
           '<div class="m">' + m.p + ' ₴</div>' +
           '<div class="ci-r"><button data-dec="' + id + '">&minus;</button><b>' + cart[id] + '</b>' +
