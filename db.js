@@ -145,7 +145,8 @@ Promise.all([
   const payCard = [].slice.call(document.querySelectorAll('.icard')).filter(
     c => c.querySelector('h3') && c.querySelector('h3').textContent.trim() === 'Оплата')[0];
   if (payCard && T.pay){
-    const rows = T.pay.split('\n').map(s => s.trim()).filter(Boolean);
+    /* кожен спосіб — з нового рядка або через кому */
+    const rows = T.pay.split(/[\n,]/).map(s => s.trim()).filter(Boolean);
     if (rows.length) payCard.querySelector('ul').innerHTML = rows.map(s => '<li>' + s + '</li>').join('');
   }
 
