@@ -151,6 +151,14 @@ Promise.all([
     if (rows.length) payCard.querySelector('ul').innerHTML = rows.map(s => '<li>' + s + '</li>').join('');
   }
 
+  /* ---------- посилання на соцмережі ---------- */
+  [['ig', 'Instagram'], ['tt', 'TikTok']].forEach(function (pair) {
+    const url = T[pair[0]];
+    if (!url) return;
+    [].slice.call(document.querySelectorAll('a[aria-label="' + pair[1] + '"]'))
+      .forEach(function (a) { a.href = url; });
+  });
+
   /* ---------- перемалювати ---------- */
   try { if (typeof renderPickTiles === 'function') renderPickTiles(); } catch (e) {}
   try { if (typeof applyPoint === 'function') applyPoint(); } catch (e) {}
