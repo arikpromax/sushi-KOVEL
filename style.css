@@ -250,6 +250,9 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .card.flat h3{margin:0}
 .card.flat .badge{position:static;align-self:flex-start;margin-bottom:9px}
 .card h3{margin:14px 0 0;font-size:19px;line-height:1.2;letter-spacing:.03em}
+/* вага чи кількість — під назвою */
+.card .wgt,.prod-wgt{margin:6px 0 0;font-size:12.5px;letter-spacing:.06em;color:var(--sand)}
+.prod-wgt{margin-top:10px;font-size:14px}
 .card .ing{margin:7px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink-3);flex:1}
 .card-f{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
 .price{display:flex;align-items:baseline;gap:4px;font-family:'Playfair Display',serif;font-size:27px;line-height:1;white-space:nowrap}

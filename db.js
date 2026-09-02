@@ -57,6 +57,7 @@ Promise.all([
       n:   str(i.title),
       p:   num(i.price),
       ing: str(e.d),
+      w:   str(e.w),          /* вага чи кількість — необовʼязково */
       /* порядок — той, у якому картки стоять в адмінці (перетягуванням) */
       pop: rows.length - k
     };
@@ -146,7 +147,7 @@ Promise.all([
     c => c.querySelector('h3') && c.querySelector('h3').textContent.trim() === 'Оплата')[0];
   if (payCard && T.pay){
     /* кожен спосіб — з нового рядка або через кому */
-    const rows = T.pay.split(/[\n,]/).map(s => s.trim()).filter(Boolean);
+    const rows = T.pay.split(/[\n,;]/).map(s => s.trim()).filter(Boolean);
     if (rows.length) payCard.querySelector('ul').innerHTML = rows.map(s => '<li>' + s + '</li>').join('');
   }
 

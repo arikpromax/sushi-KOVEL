@@ -124,6 +124,7 @@ function cardHTML(m){
           (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : '') +
         '</div>') +
     '<h3>' + m.n + '</h3>' +
+    (m.w ? '<p class="wgt">' + m.w + '</p>' : '') +
     '<p class="ing">' + (m.ing || '') + '</p>' +
     '<div class="card-f"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
     '<button class="add" data-add="' + m.id + '">Вибрати</button>' +
@@ -252,6 +253,7 @@ function openProd(id){
           '<img src="' + m.img + '" alt="' + m.n + '">' + '</div>'
       : (m.b ? '<span class="badge badge-row">' + m.b + '</span>' : '')) +
     '<h2 class="prod-n">' + m.n + '</h2>' +
+    (m.w ? '<p class="wgt prod-wgt">' + m.w + '</p>' : '') +
     '<p class="prod-ing">' + (m.ing || '') + '</p>' +
     '<div class="prod-meta"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
     '<h3 class="also-h">Спробуйте також</h3>' +
