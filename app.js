@@ -105,17 +105,24 @@ function cartSum(){
   cartLines().forEach(id => { const m = byId(id); total += m.p * cart[id]; count += cart[id]; });
   return {total: total, count: count};
 }
-/* Пакування — одне на все замовлення, не на кожну позицію:
-   10 ₴ звичайно, і 5 ₴, коли беруть одну-єдину позицію без сета. */
-const PACK_BIG = 10, PACK_ONE = 5;
+/* Пакування рахується коробками, як пакує кухня:
+     «пакування 2» — 10 ₴ — сет і до двох ролів разом із ним;
+     «пакування 1» — 5 ₴ — до двох ролів.
+   Ролом вважається все, крім сетів; соуси, імбир і напої не рахуються. */
+const PACK_BIG = 10, PACK_SMALL = 5, PER_PACK = 2;
+function packBoxes(){
+  let sets = 0, rolls = 0;
+  cartLines().forEach(id => {
+    const m = byId(id);
+    if (m.c === 'add') return;
+    if (m.c === 'set') sets += cart[id]; else rolls += cart[id];
+  });
+  const left = Math.max(0, rolls - sets * PER_PACK);   /* що не влізло до сетів */
+  return {big: sets, small: Math.ceil(left / PER_PACK)};
+}
 function packSum(){
-  const ids = cartLines();
-  if (!ids.length) return 0;
-  const hasSet = ids.some(id => byId(id).c === 'set');
-  /* соуси, імбир і напої не роблять замовлення великим */
-  let dishes = 0;
-  ids.forEach(id => { if (byId(id).c !== 'add') dishes += cart[id]; });
-  return (hasSet || dishes > 1) ? PACK_BIG : PACK_ONE;
+  const b = packBoxes();
+  return b.big * PACK_BIG + b.small * PACK_SMALL;
 }
 
 function deliveryFor(total){
