@@ -112,7 +112,10 @@ function packSum(){
   const ids = cartLines();
   if (!ids.length) return 0;
   const hasSet = ids.some(id => byId(id).c === 'set');
-  return (hasSet || cartSum().count > 1) ? PACK_BIG : PACK_ONE;
+  /* соуси, імбир і напої не роблять замовлення великим */
+  let dishes = 0;
+  ids.forEach(id => { if (byId(id).c !== 'add') dishes += cart[id]; });
+  return (hasSet || dishes > 1) ? PACK_BIG : PACK_ONE;
 }
 
 function deliveryFor(total){
