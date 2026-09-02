@@ -243,8 +243,11 @@ function openProd(id){
 
   $('#prodCat').textContent = cat;
   $('#prodBody').innerHTML =
-    '<div class="prod-ph">' + (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
-      (m.img ? '<img src="' + m.img + '" alt="' + m.n + '">' : '') + '</div>' +
+    /* без фото порожню плашку не малюємо — лишається сама назва */
+    (m.img
+      ? '<div class="prod-ph">' + (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
+          '<img src="' + m.img + '" alt="' + m.n + '">' + '</div>'
+      : (m.b ? '<span class="badge badge-row">' + m.b + '</span>' : '')) +
     '<h2 class="prod-n">' + m.n + '</h2>' +
     '<p class="prod-ing">' + (m.ing || '') + '</p>' +
     '<div class="prod-meta"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
