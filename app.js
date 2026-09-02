@@ -105,6 +105,17 @@ function cartSum(){
   cartLines().forEach(id => { const m = byId(id); total += m.p * cart[id]; count += cart[id]; });
   return {total: total, count: count};
 }
+/* Пакування: сет — 10 ₴, будь-яка інша позиція — 5 ₴ за штуку. */
+const PACK_SET = 10, PACK_ONE = 5;
+function packSum(){
+  let sum = 0;
+  cartLines().forEach(id => {
+    const m = byId(id);
+    sum += (m.c === 'set' ? PACK_SET : PACK_ONE) * cart[id];
+  });
+  return sum;
+}
+
 function deliveryFor(total){
   const d = POINT().delivery;
   if (!d.length) return {from: 0, price: 0, t: ''};   /* точка без порогів */
@@ -176,9 +187,11 @@ function renderCart(){
     fd.parentElement.classList.toggle('free', d.price === 0);
     fd.textContent = s.count ? (d.price === 0 ? 'безкоштовно' : money(d.price)) : '—';
   }
+  const pk = packSum();
+  const fp = $('#fPack');  if (fp) fp.textContent = s.count ? money(pk) : '—';
   const fs = $('#fSub');   if (fs) fs.textContent = money(s.total);
   const fc = $('#fCount'); if (fc) fc.textContent = s.count;
-  const ft = $('#fTotal'); if (ft) ft.textContent = money(s.total + (s.count ? d.price : 0));
+  const ft = $('#fTotal'); if (ft) ft.textContent = money(s.total + pk + (s.count ? d.price : 0));
   const hc = $('#hdrCount'); if (hc) hc.textContent = s.count;
   const bc = $('#bCount'), bt = $('#bCart');
   if (bc && bt){
@@ -209,7 +222,7 @@ function renderCart(){
 function renderCheck(){
   const paper = $('#checkPaper');
   if (!paper) return;
-  const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT();
+  const ids = cartLines(), s = cartSum(), d = deliveryFor(s.total), p = POINT(), pk = packSum();
   paper.innerHTML =
     '<div class="check-top">' +
       '<img class="check-logo" src="photos/logo-dark.png" alt="SushiЮ" width="460" height="222">' +
@@ -221,21 +234,23 @@ function renderCheck(){
         '<div class="r">' + money(m.p * cart[id]) + '</div></div>';
     }).join('') +
     '<div class="check-sum"><span>Сума</span><b>' + money(s.total) + '</b></div>' +
+    '<div class="check-sum"><span>Пакування</span><b>' + money(pk) + '</b></div>' +
     '<div class="check-sum' + (d.price === 0 ? ' free' : '') + '"><span>Доставка</span><b>' +
       (d.price === 0 ? 'безкоштовно' : money(d.price)) + '</b></div>' +
-    '<div class="check-total"><span>Разом</span><b>' + money(s.total + d.price) + '</b></div>' +
+    '<div class="check-total"><span>Разом</span><b>' + money(s.total + pk + d.price) + '</b></div>' +
     '<p class="check-note">Продиктуйте цей список адміністратору<br>' + p.n + ' · щодня ' + p.hours + '</p>';
 }
 
 function receiptText(){
   const ids = cartLines();
   if (!ids.length) return '';
-  const s = cartSum(), d = deliveryFor(s.total), p = POINT();
+  const s = cartSum(), d = deliveryFor(s.total), p = POINT(), pk = packSum();
   return 'Замовлення SushiЮ (' + p.n + ')\n' +
     ids.map(id => { const m = byId(id); return '• ' + m.n + ' — ' + cart[id] + ' × ' + m.p + ' ₴'; }).join('\n') +
     '\n\nСума: ' + money(s.total) +
+    '\nПакування: ' + money(pk) +
     '\nДоставка: ' + (d.price === 0 ? 'безкоштовно' : money(d.price)) +
-    '\nРазом: ' + money(s.total + d.price);
+    '\nРазом: ' + money(s.total + pk + d.price);
 }
 
 /* ---------- сторінка позиції ---------- */
