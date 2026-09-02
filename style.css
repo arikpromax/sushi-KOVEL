@@ -455,6 +455,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .cart-empty .ico{font-size:44px;color:var(--line-2);margin:0 auto 14px}
 .cart-empty .btn{margin-top:18px}
 .cart-f{flex:none;padding:18px 22px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--panel)}
+/* підказка над підсумком кошика */
+.cart-tip{margin:0 0 12px;padding-bottom:11px;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5;color:var(--sand)}
 .f-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--ink-2);margin-bottom:7px}
 .f-row b{color:var(--ink);font-weight:600}
 .f-row.free b{color:var(--ok)}
