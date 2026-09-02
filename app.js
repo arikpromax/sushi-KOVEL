@@ -111,11 +111,15 @@ function deliveryFor(total){
 
 function cardHTML(m){
   const qty = cart[m.id] || 0;
-  return '<article class="card' + (qty ? ' in' : '') + '" data-id="' + m.id + '">' +
-    '<div class="ph">' +
-      (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
-      (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : '') +
-    '</div>' +
+  /* соуси, напої та інше «Додатково» — без порожньої плашки під фото */
+  const flat = m.c === 'add' && !m.img;
+  return '<article class="card' + (qty ? ' in' : '') + (flat ? ' flat' : '') + '" data-id="' + m.id + '">' +
+    (flat
+      ? (m.b ? '<span class="badge">' + m.b + '</span>' : '')
+      : '<div class="ph">' +
+          (m.b ? '<span class="badge">' + m.b + '</span>' : '') +
+          (m.img ? '<img src="' + m.img + '" alt="' + m.n + '" loading="lazy">' : '') +
+        '</div>') +
     '<h3>' + m.n + '</h3>' +
     '<p class="ing">' + (m.ing || '') + '</p>' +
     '<div class="card-f"><span class="price"><i>₴</i>' + m.p + '</span></div>' +
