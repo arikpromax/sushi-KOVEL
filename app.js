@@ -84,7 +84,9 @@ function applyPoint(){
     }
   });
   const dl = $('#delivList');
-  if (dl) dl.innerHTML = p.delivery.map(d => '<li>' + d.t + '</li>').join('') + '<li>' + p.note + '</li>';
+  /* у точки може не бути порогів — тоді лишається сама примітка */
+  if (dl) dl.innerHTML = p.delivery.map(d => '<li>' + d.t + '</li>').join('') +
+    (p.note ? '<li>' + p.note + '</li>' : '');
   $$('[data-point-pick]').forEach(el => el.classList.toggle('on', el.dataset.pointPick === pointId));
 }
 
@@ -105,6 +107,7 @@ function cartSum(){
 }
 function deliveryFor(total){
   const d = POINT().delivery;
+  if (!d.length) return {from: 0, price: 0, t: ''};   /* точка без порогів */
   for (let i = 0; i < d.length; i++) if (total >= d[i].from) return d[i];
   return d[d.length - 1];
 }
@@ -218,7 +221,7 @@ function renderCheck(){
     '<div class="check-sum' + (d.price === 0 ? ' free' : '') + '"><span>Доставка</span><b>' +
       (d.price === 0 ? 'безкоштовно' : money(d.price)) + '</b></div>' +
     '<div class="check-total"><span>Разом</span><b>' + money(s.total + d.price) + '</b></div>' +
-    '<p class="check-note">Продиктуйте цей список менеджеру<br>' + p.n + ' · щодня ' + p.hours + '</p>';
+    '<p class="check-note">Продиктуйте цей список адміністратору<br>' + p.n + ' · щодня ' + p.hours + '</p>';
 }
 
 function receiptText(){

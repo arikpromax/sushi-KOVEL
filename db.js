@@ -94,11 +94,14 @@ Promise.all([
     const midP = num(e.mid_price), lowP = num(e.low_price);
     const money = v => v.toLocaleString('uk-UA') + ' ₴';
     const delivery = [];
+    /* поля доставки порожні — у точки немає порогів, лишиться сама примітка */
+    if (free > 0 || mid > 0 || midP > 0 || lowP > 0){
     if (free > 0) delivery.push({from: free, price: 0, t: 'Сума від ' + money(free) + ' — доставка безкоштовна'});
     if (mid  > 0) delivery.push({from: mid + 1, price: midP, t: 'Сума від ' + money(mid) + ' — доставка ' + money(midP)});
     delivery.push({from: 0, price: lowP, t: mid > 0
       ? 'Сума до ' + money(mid) + ' — доставка ' + money(lowP)
       : 'Доставка ' + money(lowP)});
+    }
 
     return {
       id:    str(e.pkey) || 'p' + i.id,

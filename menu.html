@@ -92,7 +92,7 @@
         <ul>
           <li>Знижка <b>−10%</b> на все меню</li>
           <li>Діє за день до дня народження, у сам день і наступного дня</li>
-          <li>Просто скажіть про це менеджеру</li>
+          <li>Просто скажіть про це адміністратору</li>
         </ul>
       </div>
       <div class="icard">
@@ -143,7 +143,7 @@
     </div>
     <div class="ftr-bot">
       <span>© <span id="yr"></span> SushiЮ · Ковель · Турійськ</span>
-      <span>Ціни та склад страв уточнюйте у менеджера</span>
+      <span>Ціни та склад страв уточнюйте в адміністратора</span>
     </div>
   </div>
 </footer>
@@ -209,8 +209,8 @@
   <div class="sheet-f"><div class="cart-in" id="prodFoot"></div></div>
 </div>
 
-<script src="data.js?v=11"></script>
-<script src="app.js?v=14"></script>
+<script src="data.js?v=12"></script>
+<script src="app.js?v=15"></script>
 <script>
 const params = new URLSearchParams(location.search);
 let q = params.get('q') || '';
@@ -314,6 +314,6 @@ initShell();
 const wantCat = params.get('c');
 if (wantCat && !q) setTimeout(() => goCat(wantCat), 120);
 </script>
-<script src="db.js?v=3"></script>
+<script src="db.js?v=4"></script>
 </body>
 </html>
