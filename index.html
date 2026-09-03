@@ -36,11 +36,11 @@
 
 <header class="hdr" id="hdr">
   <div class="wrap">
-    <a href="index.html" class="logo" aria-label="SushiЮ">
+    <a href="/" class="logo" aria-label="SushiЮ">
       <img class="logo-mark" src="photos/logo.png" alt="SushiЮ" width="460" height="222">
 </a>
     <nav class="nav">
-      <a href="menu.html">Меню</a>
+      <a href="/menu">Меню</a>
       <a href="#delivery" data-sp="delivery">Доставка</a>
       <a href="#contacts" data-sp="contacts">Контакти</a>
     </nav>
@@ -64,7 +64,7 @@
     <h1><em>Найсмачніша</em> доставка твого міста</h1>
     <p class="lead">Роли для щасливих людей</p>
     <div class="hero-cta">
-      <a href="menu.html" class="btn btn-p">Дивитись меню <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="/menu" class="btn btn-p">Дивитись меню <svg class="ico"><use href="#i-arrow"/></svg></a>
       <a href="#delivery" class="btn btn-g"><svg class="ico"><use href="#i-delivery"/></svg> Безкоштовна доставка від 1 400 ₴</a>
     </div>
     <div class="bnr-grid rv" id="bnrGrid"></div>
@@ -83,10 +83,10 @@
   <div class="wrap">
     <div class="sec-head rv">
       <h2 class="sec-h">Сети</h2>
-      <a href="menu.html" class="btn btn-g">Усе меню <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="/menu" class="btn btn-g">Усе меню <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
 
-    <form class="search rv" id="homeSearch" action="menu.html">
+    <form class="search rv" id="homeSearch" action="/menu">
       <svg class="ico"><use href="#i-search"/></svg>
       <input name="q" type="search" placeholder="Пошук: філадельфія, креветка, макі…" autocomplete="off">
       <button class="go" type="submit"><svg class="ico"><use href="#i-search"/></svg><span>Пошук</span></button>
@@ -94,7 +94,7 @@
 
     <div class="rail" id="rail" style="margin-top:24px"></div>
 
-    <a href="menu.html" class="btn btn-p btn-wide">Перейти до меню <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="/menu" class="btn btn-p btn-wide">Перейти до меню <svg class="ico"><use href="#i-arrow"/></svg></a>
   </div>
 </section>
 
@@ -151,7 +151,7 @@
   <div class="wrap">
     <div class="ftr-grid">
       <div>
-        <a href="index.html" class="logo" style="margin-bottom:15px">
+        <a href="/" class="logo" style="margin-bottom:15px">
           <img class="logo-mark" src="photos/logo.png" alt="SushiЮ" width="460" height="222">
 </a>
         <p>Найсмачніша доставка твого міста.<br>Роли для щасливих людей.</p>
@@ -186,8 +186,8 @@
 </footer>
 
 <nav class="bnav" aria-label="Швидка навігація">
-  <a class="bn act" href="index.html"><svg class="ico"><use href="#i-home"/></svg>Головна</a>
-  <a class="bn" href="menu.html"><svg class="ico"><use href="#i-menu"/></svg>Меню</a>
+  <a class="bn act" href="/"><svg class="ico"><use href="#i-home"/></svg>Головна</a>
+  <a class="bn" href="/menu"><svg class="ico"><use href="#i-menu"/></svg>Меню</a>
   <button class="bn bn-cart" id="bCart" aria-label="Моє замовлення">
     <span class="bubble"><svg class="ico"><use href="#i-bag"/></svg><span class="cnt" id="bCount">0</span></span>
     <span class="lbl">Кошик</span>
@@ -250,7 +250,7 @@
 </div>
 
 <script src="data.js?v=13"></script>
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 <script>
 /* банери категорій */
 const BNR = [
@@ -268,7 +268,7 @@ function refreshMenu(){
     })
     .filter(Boolean)
     .map(b =>
-      '<a class="bnr" href="menu.html?c=' + b.c + '">' +
+      '<a class="bnr" href="/menu?c=' + b.c + '">' +
         (b.img ? '<span class="bnr-ph" style="background-image:url(\'' + b.img + '\')"></span>' : '') +
         '<span class="bnr-t">' + b.n + '</span>' +
         '<span class="bnr-go"><svg class="ico"><use href="#i-arrow"/></svg></span>' +
@@ -283,7 +283,7 @@ refreshMenu();
 $('#homeSearch').addEventListener('submit', e => {
   e.preventDefault();
   const v = e.target.querySelector('input').value.trim();
-  location.href = 'menu.html' + (v ? '?q=' + encodeURIComponent(v) : '');
+  location.href = '/menu' + (v ? '?q=' + encodeURIComponent(v) : '');
 });
 
 /* кнопка «Змінити заклад» у підвалі */

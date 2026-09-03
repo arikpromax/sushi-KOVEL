@@ -34,14 +34,14 @@
 
 <header class="hdr solid" id="hdr">
   <div class="wrap">
-    <a class="back" href="index.html" aria-label="Назад"><svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="index.html" class="logo" aria-label="SushiЮ">
+    <a class="back" href="/" aria-label="Назад"><svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="/" class="logo" aria-label="SushiЮ">
       <img class="logo-mark" src="photos/logo.png" alt="SushiЮ" width="460" height="222">
 </a>
     <nav class="nav">
-      <a href="menu.html" class="act">Меню</a>
-      <a href="index.html#delivery">Доставка</a>
-      <a href="index.html#contacts">Контакти</a>
+      <a href="/menu" class="act">Меню</a>
+      <a href="/#delivery">Доставка</a>
+      <a href="/#contacts">Контакти</a>
     </nav>
     <button class="pt-pill" id="pointBtn">
       <svg class="ico"><use href="#i-pin"/></svg><b data-pt="name">Ковель</b><i>&#9660;</i>
@@ -115,7 +115,7 @@
   <div class="wrap">
     <div class="ftr-grid">
       <div>
-        <a href="index.html" class="logo" style="margin-bottom:15px">
+        <a href="/" class="logo" style="margin-bottom:15px">
           <img class="logo-mark" src="photos/logo.png" alt="SushiЮ" width="460" height="222">
 </a>
         <p>Найсмачніша доставка твого міста.<br>Роли для щасливих людей.</p>
@@ -150,13 +150,13 @@
 </footer>
 
 <nav class="bnav" aria-label="Швидка навігація">
-  <a class="bn" href="index.html"><svg class="ico"><use href="#i-home"/></svg>Головна</a>
-  <a class="bn act" href="menu.html"><svg class="ico"><use href="#i-menu"/></svg>Меню</a>
+  <a class="bn" href="/"><svg class="ico"><use href="#i-home"/></svg>Головна</a>
+  <a class="bn act" href="/menu"><svg class="ico"><use href="#i-menu"/></svg>Меню</a>
   <button class="bn bn-cart" id="bCart" aria-label="Моє замовлення">
     <span class="bubble"><svg class="ico"><use href="#i-bag"/></svg><span class="cnt" id="bCount">0</span></span>
     <span class="lbl">Кошик</span>
   </button>
-  <a class="bn" href="index.html#delivery"><svg class="ico"><use href="#i-delivery"/></svg>Доставка</a>
+  <a class="bn" href="/#delivery"><svg class="ico"><use href="#i-delivery"/></svg>Доставка</a>
   <a class="bn" href="tel:+380671213366" data-pt-href="tel1"><svg class="ico"><use href="#i-phone"/></svg>Телефон</a>
 </nav>
 
@@ -212,7 +212,7 @@
 </div>
 
 <script src="data.js?v=13"></script>
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 <script>
 const params = new URLSearchParams(location.search);
 let q = params.get('q') || '';

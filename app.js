@@ -163,7 +163,7 @@ function renderCart(){
     if (!ids.length){
       body.innerHTML = '<div class="cart-empty"><svg class="ico"><use href="#i-bag"/></svg>' +
         '<p>Тут зʼявиться те, що ви виберете<br>в меню. Потім просто зателефонуйте.</p>' +
-        '<a class="btn btn-p" href="menu.html">Відкрити меню</a></div>';
+        '<a class="btn btn-p" href="/menu">Відкрити меню</a></div>';
     } else {
       body.innerHTML = ids.map(id => {
         const m = byId(id);
@@ -381,7 +381,7 @@ function initShell(){
   const hSearch = $('#hdrSearch');
   if (hSearch) hSearch.addEventListener('click', () => {
     const inp = $('#q') || document.querySelector('#homeSearch input');
-    if (!inp) { location.href = 'menu.html'; return; }
+    if (!inp) { location.href = '/menu'; return; }
     inp.scrollIntoView({block:'center', behavior:'smooth'});
     setTimeout(() => inp.focus(), 340);
   });
