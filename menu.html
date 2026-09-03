@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Marck+Script&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=34">
+<link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 
@@ -247,6 +247,7 @@ function renderGrid(){
       if (!part.length) return;
       html += '<section class="cat-block" data-cat="' + c.id + '">' +
                 '<h2 class="cat-title">' + c.n + '</h2>' +
+                (c.note ? '<p class="cat-note">' + c.note + '</p>' : '') +
                 '<div class="grid">' + part.map(cardHTML).join('') + '</div>' +
               '</section>';
     });
@@ -316,6 +317,6 @@ initShell();
 const wantCat = params.get('c');
 if (wantCat && !q) setTimeout(() => goCat(wantCat), 120);
 </script>
-<script src="db.js?v=8"></script>
+<script src="db.js?v=9"></script>
 </body>
 </html>

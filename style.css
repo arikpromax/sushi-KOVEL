@@ -229,6 +229,8 @@ section.pad{padding:clamp(52px,7.5vw,96px) 0}
 .cat-title{font-size:clamp(24px,4vw,36px);letter-spacing:.14em;text-transform:uppercase;margin:38px 0 18px;display:flex;align-items:center;gap:18px}
 .cat-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
 .cat-title:first-child{margin-top:22px}
+/* примітка під назвою розділу — те, що варто сказати про весь розділ */
+.cat-note{margin:-8px 0 18px;font-size:13px;line-height:1.55;color:var(--sand);max-width:70ch}
 
 /* ================= cards ================= */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:26px 20px}

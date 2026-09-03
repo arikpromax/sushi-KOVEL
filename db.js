@@ -39,6 +39,7 @@ Promise.all([
     .map(i => {
       const c = {id: str((i.extra || {}).catkey), n: str(i.title)};
       if (str(i.image_url)) c.img = str(i.image_url);   /* фото для банера на головній */
+      if (str((i.extra || {}).note)) c.note = str(i.extra.note);   /* рядок під заголовком */
       return c;
     })
     .filter(c => c.id && c.n);
