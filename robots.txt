@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sushijulia.com.ua/sitemap.xml
